@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://huaxiaoer.github.io">
-  <title>Archives | Kindrage 的blog</title>
+  <title>java-args | Kindrage 的blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="随手记 - 我的程序员之路">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kindrage 的blog">
-<meta property="og:url" content="https://huaxiaoer.github.io/archives/index.html">
+  <meta name="description" content="java程序调用1234567891011121314用法:       java [-options] class [args...]           (执行类)      或  java [-options] -jar jarfile [args...]           (执行 jar 文件)    其中options包括:      -d32     使用 32 位数据模型 (如果可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java-args">
+<meta property="og:url" content="https://huaxiaoer.github.io/2020/05/05/java-args/index.html">
 <meta property="og:site_name" content="Kindrage 的blog">
-<meta property="og:description" content="随手记 - 我的程序员之路">
+<meta property="og:description" content="java程序调用1234567891011121314用法:       java [-options] class [args...]           (执行类)      或  java [-options] -jar jarfile [args...]           (执行 jar 文件)    其中options包括:      -d32     使用 32 位数据模型 (如果可">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-05T03:33:46.000Z">
+<meta property="article:modified_time" content="2020-05-05T03:56:08.650Z">
 <meta property="article:author" content="Kindrage">
-<meta property="article:tag" content="java 程序员 coder cassandra linux spring">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Kindrage 的blog" type="application/atom+xml">
@@ -196,41 +199,142 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-java-args" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/05/java-args/" class="archive-article-date">
-        <time datetime="2020-05-05T03:33:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/05/java-args/" target="_blank">java-args</a>
   
+    <h1 class="article-title" itemprop="name">
+      java-args
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/05/05/java-args/" class="archive-article-date">
+        <time datetime="2020-05-05T03:33:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">885字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="java程序调用"><a href="#java程序调用" class="headerlink" title="java程序调用"></a>java程序调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">用法:    </span><br><span class="line">   java [-options] class [args...]</span><br><span class="line">           (执行类)   </span><br><span class="line">   或  java [-options] -jar jarfile [args...]</span><br><span class="line">           (执行 jar 文件)   </span><br><span class="line"> 其中options包括:  </span><br><span class="line">    -d32     使用 32 位数据模型 (如果可用)   </span><br><span class="line">    -d64     使用 64 位数据模型 (如果可用)   </span><br><span class="line">    -server      选择 server VM      </span><br><span class="line">              默认 VM 是 server,      </span><br><span class="line">             因为您是在服务器类计算机上运行。</span><br><span class="line">   ...   </span><br><span class="line">    &quot;-D&lt;名称&gt;&#x3D;&lt;值&gt;  设置系统属性&quot;   </span><br><span class="line">   ...</span><br></pre></td></tr></table></figure>
+
+<p>这里重点关注jvm参数, 也就是-D这个, 其他选项就省略了.<br>-D开头的选项会被作为系统属性值,可以使用<br><code>System.getProperty(&quot;name&quot;)</code> 获取.  </p>
+<p>仔细观察可以发现: </p>
+<ol>
+<li><p>所有的 option都是以<code>-</code>开头.  </p>
+</li>
+<li><p>第一个没有短横线的参数,会被认为是<code>class</code></p>
+</li>
+<li><p><code>class</code> 后边的所有参数会被作为 <code>main</code> 函数的 <code>args[]</code></p>
+</li>
+<li><p>综上: 系统属性通过<code>-Dkey=value</code>来设置, 出现在<code>class</code>的前面,  而程序运行参数出现在class的后面, 解析方式和命令行参数一致, 以空格分割为<code>String[]</code> ,传给<code>main</code> 方法.</p>
+</li>
+<li><p>SpringBoot 的<code>args</code> 参数: <code>[args...]</code> 中以<code>--key=value</code> 形式存在的参数, 会被<code>SpringBoot</code>搜集处理, 放在<code>properites</code>中,在程序中可以直接使用<code>${&quot;key&quot;}</code> 的方式引用.</p>
+</li>
+</ol>
+<h4 id="jvm非标准选项-X"><a href="#jvm非标准选项-X" class="headerlink" title="jvm非标准选项 -X"></a>jvm非标准选项 -X</h4><p>以下是java 8 的非常标准选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">    -Xmixed           混合模式执行 (默认)</span><br><span class="line">    -Xint             仅解释模式执行</span><br><span class="line">    -Xbootclasspath:&lt;用 : 分隔的目录和 zip&#x2F;jar 文件&gt;</span><br><span class="line">                      设置搜索路径以引导类和资源</span><br><span class="line">    -Xbootclasspath&#x2F;a:&lt;用 : 分隔的目录和 zip&#x2F;jar 文件&gt;</span><br><span class="line">                      附加在引导类路径末尾</span><br><span class="line">    -Xbootclasspath&#x2F;p:&lt;用 : 分隔的目录和 zip&#x2F;jar 文件&gt;</span><br><span class="line">                      置于引导类路径之前</span><br><span class="line">    -Xdiag            显示附加诊断消息</span><br><span class="line">    -Xnoclassgc       禁用类垃圾收集</span><br><span class="line">    -Xincgc           启用增量垃圾收集</span><br><span class="line">    -Xloggc:&lt;file&gt;    将 GC 状态记录在文件中 (带时间戳)</span><br><span class="line">    -Xbatch           禁用后台编译</span><br><span class="line">    -Xms&lt;size&gt;        设置初始 Java 堆大小</span><br><span class="line">    -Xmx&lt;size&gt;        设置最大 Java 堆大小</span><br><span class="line">    -Xss&lt;size&gt;        设置 Java 线程堆栈大小</span><br><span class="line">    -Xprof            输出 cpu 配置文件数据</span><br><span class="line">    -Xfuture          启用最严格的检查, 预期将来的默认值</span><br><span class="line">    -Xrs              减少 Java&#x2F;VM 对操作系统信号的使用 (请参阅文档)</span><br><span class="line">    -Xcheck:jni       对 JNI 函数执行其他检查</span><br><span class="line">    -Xshare:off       不尝试使用共享类数据</span><br><span class="line">    -Xshare:auto      在可能的情况下使用共享类数据 (默认)</span><br><span class="line">    -Xshare:on        要求使用共享类数据, 否则将失败。</span><br><span class="line">    -XshowSettings    显示所有设置并继续</span><br><span class="line">    -XshowSettings:all</span><br><span class="line">                      显示所有设置并继续</span><br><span class="line">    -XshowSettings:vm 显示所有与 vm 相关的设置并继续</span><br><span class="line">    -XshowSettings:properties</span><br><span class="line">                      显示所有属性设置并继续</span><br><span class="line">    -XshowSettings:locale</span><br><span class="line">                      显示所有与区域设置相关的设置并继续</span><br><span class="line"></span><br><span class="line">-X 选项是非标准选项, 如有更改, 恕不另行通知。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">以下选项为 Mac OS X 特定的选项:</span><br><span class="line">    -XstartOnFirstThread</span><br><span class="line">                      在第一个 (AppKit) 线程上运行 main() 方法</span><br><span class="line">    -Xdock:name&#x3D;&lt;应用程序名称&gt;&quot;</span><br><span class="line">                      覆盖停靠栏中显示的默认应用程序名称</span><br><span class="line">    -Xdock:icon&#x3D;&lt;图标文件的路径&gt;</span><br><span class="line">                      覆盖停靠栏中显示的默认图标</span><br></pre></td></tr></table></figure>
+<p>其中比较常用的是 <code>-Xms</code> <code>-Xmx</code> 用来设置jvm堆内存大小。 </p>
+<h4 id="java高级运行时选项-Advanced-Runtime-Options"><a href="#java高级运行时选项-Advanced-Runtime-Options" class="headerlink" title="java高级运行时选项, Advanced Runtime Options"></a>java高级运行时选项, Advanced Runtime Options</h4><p>These options control the runtime behavior of the Java HotSpot VM.<br>用来控制jvm运行时的行为。<br>例如8以前的版本常用 <code>-XX:PermSize=256m</code> 来控制持久带的大小。<br>高级选项可以通过 <code>man java</code> 来查看java命令的详情文档， 里面有完整的描述。</p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Kindrage
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://huaxiaoer.github.io/2020/05/05/java-args/" title="java-args" target="_blank">https://huaxiaoer.github.io/2020/05/05/java-args/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -246,51 +350,107 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://huaxiaoer.github.io/2020/05/05/java-args/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/05/05/hello-world/" class="archive-article-date">
-        <time datetime="2020-05-05T01:37:12.009Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/05/05/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -331,8 +491,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
