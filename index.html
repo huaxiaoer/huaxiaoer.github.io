@@ -86,6 +86,8 @@
 			
 				<li><a href="/tags/java/" target="_blank">java</a></li>
 			
+				<li><a href="/tags/mysql/" target="_blank">mysql</a></li>
+			
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -158,6 +160,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -178,13 +182,15 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 25%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="https://huaxiaoer.github.io/">技术笔记</a></li>
+					<li style="width: 20%"><a href="https://huaxiaoer.github.io/">技术笔记</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 20%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/java/">java</a></li>
+					<li style="width: 20%"><a href="/tags/java/">java</a></li>
+		        
+					<li style="width: 20%"><a href="/tags/mysql/">mysql</a></li>
 		        
 				</ul>
 			</nav>
@@ -201,6 +207,144 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-mysql-utf8mb4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/06/mysql-utf8mb4/" target="_blank">java中使用mysql utf8mb4 字符集</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/06/mysql-utf8mb4/" class="archive-article-date">
+        <time datetime="2020-05-06T03:21:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="emoji表情的存储问题"><a href="#emoji表情的存储问题" class="headerlink" title="emoji表情的存储问题"></a>emoji表情的存储问题</h3><p>随着emoji表情使用越来越广泛，在mysql数据库在存储emoji表情的需求就越来越常见。 </p>
+<p>mysql <code>utf8</code> 字符集只能存储三个字节，实际上并不是真正的UTF-8，不能存储emoji表情。</p>
+<p>所以如果mysql数据库和表的字符集都使用的utf8，在存emoji表情的时候就会出错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.sql.SQLException: Incorrect string value: &#39;\xF0\x9F\x8D\x93\xE4\xBA...&#39; for column &#39;title&#39; at row 1</span><br><span class="line">	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3933)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3869)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2675)</span><br><span class="line">	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2465)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1912)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2133)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2067)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5175)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2052)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>为了支持emoji，mysql推出了<code>utf8mb4</code>字符集 , 那么如何在现有字符集为utf8的数据库上使用utf8mb4呢？</p>
+<p>首先，当然是把需要存emoji的数据库、表、字段的字符集都修改成为<code>utf8mb4</code>， 由于<code>utf8mb4</code>是兼容<code>utf8</code>的，所以修改并不会影响数据。</p>
+<p>然后，然后设置客户端字符集</p>
+<p>Java中一般使用<code>Connector/J</code> 来连接<code>mysql</code> ，看一下官网原文描述:</p>
+<blockquote>
+<p> For Connector/J 5.1.46 and earlier: In order to use the utf8mb4 character set for the connection, the server MUST be configured with character_set_server=utf8mb4; if that is not the case, when UTF-8 is used for characterEncoding in the connection string, it will map to the MySQL character set name utf8, which is an alias for utf8mb3.</p>
+<p>For Connector/J 5.1.47 and later:</p>
+<p>When UTF-8 is used for characterEncoding in the connection string, it maps to the MySQL character set name utf8mb4.</p>
+<p>If the connection option connectionCollation is also set alongside characterEncoding and is incompatible with it, characterEncoding will be overridden with the encoding corresponding to connectionCollation.</p>
+<p>Because there is no Java-style character set name for utfmb3 that you can use with the connection option charaterEncoding, the only way to use utf8mb3 as your connection character set is to use a utf8mb3 collation (for example, utf8_general_ci) for the connection option connectionCollation, which forces a utf8mb3 character set to be used, as explained in the last bullet.    </p>
+</blockquote>
+<p>可以看出：</p>
+<ul>
+<li>如果使用的是<code>Connector/J 5.1.46</code> 以及之前的版本，必须修改server 端的字符集：<code>character_set_server=utf8mb4</code>，这需要重启mysql服务，对于这使用云rds的同学来说更加困难</li>
+<li>更好的办法是升级 <code>Connector/J</code> 到 <code>5.1.47</code> 之后的版本，这样当我们连接参数指定为<code>characterEncoding=UTF-8</code> 的时候， <code>character_set_client</code> 和 <code>character_set_connection</code> 就会使用<code>utf8mb4</code>了。 当然还需要添加<code>characterSetResults=UTF-8</code>参数， 将<code>character_set_results</code>也设置为<code>utf8mb4</code> 。</li>
+</ul>
+<p>通过<code>Connector/J</code>客户端设置<code>utf8mb4</code>字符集的 java 示例代码如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDevWithJDBC</span><span class="params">()</span> <span class="keyword">throws</span> SQLException, ClassNotFoundException </span>&#123;</span><br><span class="line">        Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">        Connection connection = DriverManager.getConnection(<span class="string">"jdbc:mysql://localhost:3306/jingdong_db?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"</span></span><br><span class="line">                + <span class="string">"&amp;user=***&amp;password=***"</span>);</span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line">        viewSessionCharacterSet(statement);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">viewSessionCharacterSet</span><span class="params">(Statement statement)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        ResultSet resultSet = statement.executeQuery(<span class="string">"show variables like '%character%';"</span>);</span><br><span class="line">        <span class="keyword">while</span> (resultSet.next())&#123;</span><br><span class="line">            System.out.println(resultSet.getString(<span class="number">1</span>) + <span class="string">":"</span> +resultSet.getString(<span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="关于乱码问题"><a href="#关于乱码问题" class="headerlink" title="关于乱码问题"></a>关于乱码问题</h3><p>查看字符集<br>首先我们得登录数据库实例，查看当前数据库的字符集设置。</p>
+<p>使用如下命令：<br><code>show variables like &#39;%character%&#39;</code><br>可以看到字符集的具体情况如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">variable_name  value</span><br><span class="line">character_set_client   utf8</span><br><span class="line">character_set_connection   utf8</span><br><span class="line">character_set_database utf8</span><br><span class="line">character_set_filesystem   binary</span><br><span class="line">character_set_results  utf8</span><br><span class="line">character_set_server   utf8</span><br><span class="line">character_set_system   utf8</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="字符集参数说明"><a href="#字符集参数说明" class="headerlink" title="字符集参数说明"></a>字符集参数说明</h4><ul>
+<li>character_set_client： 此参数是客户端可以设置的，具体设置方式见下文详解。</li>
+<li>character_set_connection： 此参数是客户端可以设置的，具体设置方式见下文详解。</li>
+<li>character_set_database： 此参数值与你创建库的时候指定的字符集有关，关于创建库的时候如何指定字符集，可以参考创建库</li>
+<li>character_set_results：此参数是客户端可以设置的，具体设置方式见下文详解。</li>
+<li>character_set_server： 此参数是服务端的设置，此参数值可以通过参数组进行修改，可以参考 修改参数；   <strong>注意：</strong>此参数修改完后，记得重启实例才能确保 <code>character_set_database</code> 默认值与 <code>character_set_server</code> 保持同步。</li>
+<li>character_set_system： 此参数可以<strong>不用关心</strong></li>
+<li>character_set_filesystem： 此参数可以<strong>不用关心</strong></li>
+</ul>
+<h4 id="如何避免乱码"><a href="#如何避免乱码" class="headerlink" title="如何避免乱码"></a>如何避免乱码</h4><p>要避免在使用数据库过程中的乱码问题，需要确保<code>character_set_client</code>、<code>character_set_connection</code> 、<code>character_set_results</code>、<code>character_set_database</code>这四个参数值是保持一致的，如果不一致就会有可能出现乱码。</p>
+<h4 id="Java设置客户端设置字符集"><a href="#Java设置客户端设置字符集" class="headerlink" title="Java设置客户端设置字符集"></a>Java设置客户端设置字符集</h4><ul>
+<li><code>character_set_client</code>、<code>character_set_connection</code>  通过<code>characterEncoding</code> 参数设置</li>
+<li><code>character_set_results</code> 通过<code>characterSetResults</code> 参数设置</li>
+</ul>
+<p>示例： <code>jdbc:mysql://localhost:3306/mydb?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8</code></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/06/mysql-utf8mb4/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
 
   
     <article id="post-java-args" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -448,7 +592,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: true
+		showTags: false
 	}
 </script>
 
@@ -526,6 +670,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
