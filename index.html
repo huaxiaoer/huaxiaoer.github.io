@@ -240,7 +240,10 @@
     
     <p>本文介绍从cassandara 集群删除节点步骤</p>
 <h4 id="查看节点状态"><a href="#查看节点状态" class="headerlink" title="查看节点状态"></a>查看节点状态</h4><p>移除节点前， 首先需要查看节点状态</p>
-<p><code>nodetool status</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodetool status</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="根据节点状态移除节点"><a href="#根据节点状态移除节点" class="headerlink" title="根据节点状态移除节点"></a>根据节点状态移除节点</h4><ul>
 <li><p>如果节点<strong>在线</strong> ， 则使用<code>nodetool decommission</code> 命令使节点退役, <code>decommission</code> 过程中可以使用<code>nodetool &lt;options&gt; netstats -H</code> 查看进度 </p>
 <p> <strong>注意：</strong> <code>decommission</code>  不会关闭节点， 所以需要在<code>decommission</code> 完成后手动关闭</p>
@@ -399,11 +402,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
@@ -772,15 +775,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>
