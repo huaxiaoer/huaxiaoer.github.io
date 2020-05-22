@@ -209,6 +209,102 @@
             
 
   
+    <article id="post-cassandra-remove-node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/22/cassandra-remove-node/">cassandra 移除节点</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/22/cassandra-remove-node/" class="archive-article-date">
+        <time datetime="2020-05-22T02:54:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>本文介绍从cassandara 集群删除节点步骤</p>
+<h4 id="查看节点状态"><a href="#查看节点状态" class="headerlink" title="查看节点状态"></a>查看节点状态</h4><p>移除节点前， 首先需要查看节点状态</p>
+<p><code>nodetool status</code></p>
+<h4 id="根据节点状态移除节点"><a href="#根据节点状态移除节点" class="headerlink" title="根据节点状态移除节点"></a>根据节点状态移除节点</h4><ul>
+<li><p>如果节点<strong>在线</strong> ， 则使用<code>nodetool decommission</code> 命令使节点退役, <code>decommission</code> 过程中可以使用<code>nodetool &lt;options&gt; netstats -H</code> 查看进度 </p>
+<p> <strong>注意：</strong> <code>decommission</code>  不会关闭节点， 所以需要在<code>decommission</code> 完成后手动关闭</p>
+</li>
+<li><p>如果节点已经<strong>离线</strong>， 则使用<code>nodetool removenode {hostId}</code> 直接删除节点</p>
+<p>如果<code>removenode</code> 操作失败，需要使用<code>nodetool [options] assassinate &lt;ip_address&gt;</code> 强制杀死节点</p>
+</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">cassandra</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/22/cassandra-remove-node/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql-utf8mb4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -670,6 +766,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">cassandra</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
