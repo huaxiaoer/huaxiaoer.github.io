@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://huaxiaoer.github.io/2020/05/25/spring/spring-boot/build-spring-app/</loc>
+    
+    <lastmod>2020-05-25T09:30:43.472Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://huaxiaoer.github.io/2020/05/25/cassandra/operation/add-node/</loc>
     
     <lastmod>2020-05-25T01:59:41.609Z</lastmod>
