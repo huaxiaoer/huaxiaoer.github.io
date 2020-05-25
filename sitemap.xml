@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://huaxiaoer.github.io/2020/05/25/cassandra/operation/add-node/</loc>
+    
+    <lastmod>2020-05-25T01:59:41.609Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://huaxiaoer.github.io/2020/05/22/cassandra-remove-node/</loc>
     
     <lastmod>2020-05-23T07:15:16.767Z</lastmod>
