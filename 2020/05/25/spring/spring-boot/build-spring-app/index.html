@@ -18,7 +18,7 @@
 <meta property="og:description" content="作为一个老java， 说来惭愧，spring boot出来这么多年了，才第一次使用。 不知从何下手，先看看官方文档 说了些什么吧。 后面内容就是照搬， 没动脑，只是记录，免得以后还得面对abc，实在是累 环境首先确认开发环境 1234567891011$ java -versionjava version &quot;1.8.0_201&quot;Java(TM) SE Runtime Environment (bu">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-25T08:29:44.000Z">
-<meta property="article:modified_time" content="2020-05-25T10:39:40.470Z">
+<meta property="article:modified_time" content="2020-05-26T09:30:15.516Z">
 <meta property="article:author" content="Kindrage">
 <meta property="article:tag" content="spring">
 <meta property="article:tag" content="spring boot">
@@ -244,7 +244,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2.2k字</span>
+      <span class="post-count">3.7k字</span>
     </span>
   </span>
 
@@ -253,7 +253,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">11分</span>
+      <span class="post-count">19分</span>
     </span>
   </span>
 </div>
@@ -319,8 +319,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
 
 <p>分分钟， 一个简单的web项目就完成。</p>
-<h4 id="项目打包成可执行jar"><a href="#项目打包成可执行jar" class="headerlink" title="项目打包成可执行jar"></a>项目打包成可执行jar</h4><p>项目依赖较多的情况下， 使用maven标准方法把项目打包成可执行jar， 问题一大堆， 被坑过的都懂。 以前使用<code>maven UberJar</code>插件， 经常一通配置可以解决。</p>
-<p>但spring boot 提供了更好的方案: <code>spring-boot-maven-plugin</code>。 pom文件添加如下内容:</p>
+<h4 id="项目打包成可执行jar"><a href="#项目打包成可执行jar" class="headerlink" title="项目打包成可执行jar"></a>项目打包成可执行jar</h4><p>项目依赖较多的情况下， 使用maven标准方法把项目打包成可执行jar， 问题一大堆， 被坑过的都懂。 以前使用<code>maven UberJar</code>插件， 经常一通配置可以解决。但spring boot 提供了更好的方案: <code>spring-boot-maven-plugin</code>。 pom文件添加如下内容:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 省略了其它配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 省略了其它配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>然后运行<code>mvn package</code> , 整个项目和依赖就全部打到一个jar包里了</p>
@@ -335,8 +334,30 @@
 <p>这个包含一切的jar包， 执行姿势如下:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar target/myproject-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
 
-<p><strong>特别提示：</strong> <code>java -jar</code> 模式下，程序运行的<code>classpath</code>只有这个jar包，就算指定了<code>-classpaht</code> 选项，也没选用， 会直接被忽略。 </p>
+<p><strong>特别提示：</strong> <code>java -jar</code> 模式下，程序运行的<code>classpath</code>只有这个jar包，就算指定了<code>-classpath</code> 选项，也没选用， 会直接被忽略。 </p>
 <p>运行效果和<code>mvn spring-boot:run</code> 一致。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>从搭建开始到最终页面展示“Hello World！” ， 我们只写了10来行代码， 一个配置文件都没写过， 甚至连<code>web.xml</code>文件都没管过。这究竟是如何发生的？</p>
+<p>看一下<code>Example.java</code>， 注意到三个注解<code>@RestController</code>，<code>@EnableAutoConfiguration</code> ， <code>@RequestMapping</code>， 还有一个<code>main</code>方法， 这在普通的web项目里可以没有的。</p>
+<h5 id="RestController、-RequestMapping注解"><a href="#RestController、-RequestMapping注解" class="headerlink" title="@RestController、@RequestMapping注解"></a>@RestController、<code>@RequestMapping</code>注解</h5><p>这两注解， 是<code>SpringMvc</code>里的注解，<code>@RestController</code> 表明这个类是一个Controller可以用来处理http请求， <code>@RequestMapping</code>表明了这个为和方法能处理哪些请求地址。</p>
+<h5 id="EnableAutoConfiguration注解和自动配置"><a href="#EnableAutoConfiguration注解和自动配置" class="headerlink" title="@EnableAutoConfiguration注解和自动配置"></a><code>@EnableAutoConfiguration</code>注解和自动配置</h5><p>这个注解就厉害了， 这就是0配置的核心， 有个这个注解， spring boot 会根据我们依赖的jar包来推测出我们需要对spring做的配置。这样我们就不需要手动去写一大堆spring配置文件了。</p>
+<p>我们这个项目中，由于我们依赖了<code>spring-boot-starter-web</code>，这个starter 添加了<code>springMvc</code> 和<code>tomcat</code>依赖， 所以spring <strong>自动配置功能</strong>就会假设这是个web项目， 并做出相应的配置， 包括tomcat的配置。</p>
+<p>当然， <strong>自动配置功能</strong> 并不是只能跟starter一起使用， 就算不用starter， 通过自己手动添加依赖， 自动配置也能正常工作。</p>
+<h5 id="main-方法"><a href="#main-方法" class="headerlink" title="main 方法"></a>main 方法</h5><p>可以看出这是java标准的main方法， 是java程序的入口。但是我们都知道， 通常web项目是在web容器中运行， 所以并不需要main方法， 那这个main方法是干什么用的？</p>
+<p>回到<code>pom.xml</code>文件， 发现里面并没有正常web项目都会有的<code>&lt;packaging&gt;war&lt;/packaging&gt;</code> 标签， 这是标签是告诉maven我们的项目要打成war包。 既然这个项目没有， 那说明， 压根就不是在容器里运行的， 而是做为<strong>普通的java程序</strong>运行的。  我们程序运行起来也只干一件事， 调用<code>SpringApplication.run</code>， 告诉<code>SpringApplication</code>该干活了。</p>
+<p>为了验证这个猜想， 我们可以看看通过<code>mvn spring-boot:run</code>启动项目的实际命令， 先看一看有哪些java 进程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ jps -mlv | grep -v <span class="string">"jps"</span></span><br><span class="line">1111 org.codehaus.plexus.classworlds.launcher.Launcher spring-boot:run -Dclassworlds.conf=/Users/huazhizui/application/apache-maven-3.6.0/bin/m2.conf -Dmaven.home=/Users/huazhizui/application/apache-maven-3.6.0 -Dlibrary.jansi.path=/Users/huazhizui/application/apache-maven-3.6.0/lib/jansi-native -Dmaven.multiModuleProjectDirectory=/Users/huazhizui/code/java/spring-boot-demo2</span><br><span class="line">1149 Example -Xverify:none -XX:TieredStopAtLevel=1</span><br></pre></td></tr></table></figure>
+
+<p>可以看到两个进程<code>1111</code>  和 <code>1149</code>， 可以看到<code>1111</code>是maven进程， 它的参数是<code>spring-boot:run</code>。 <code>1149</code> 就是运行我们项目的进程，查看它的完整命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ps -ef | grep <span class="string">"1149"</span> | grep -v <span class="string">"grep"</span></span><br><span class="line">  501  1149  1111   0  4:53下午 ttys001    0:03.06 /Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/jre/bin/java -Xverify:none -XX:TieredStopAtLevel=1 -cp /Users/huazhizui/code/java/spring-boot-demo2/target/classes:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter-web/2.3.0.RELEASE/spring-boot-starter-web-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter/2.3.0.RELEASE/spring-boot-starter-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot/2.3.0.RELEASE/spring-boot-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/2.3.0.RELEASE/spring-boot-autoconfigure-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter-logging/2.3.0.RELEASE/spring-boot-starter-logging-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar:/Users/huazhizui/.m2/repository/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar:/Users/huazhizui/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/Users/huazhizui/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.13.2/log4j-to-slf4j-2.13.2.jar:/Users/huazhizui/.m2/repository/org/apache/logging/log4j/log4j-api/2.13.2/log4j-api-2.13.2.jar:/Users/huazhizui/.m2/repository/org/slf4j/jul-to-slf4j/1.7.30/jul-to-slf4j-1.7.30.jar:/Users/huazhizui/.m2/repository/jakarta/annotation/jakarta.annotation-api/1.3.5/jakarta.annotation-api-1.3.5.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-core/5.2.6.RELEASE/spring-core-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-jcl/5.2.6.RELEASE/spring-jcl-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/yaml/snakeyaml/1.26/snakeyaml-1.26.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter-json/2.3.0.RELEASE/spring-boot-starter-json-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.11.0/jackson-databind-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.11.0/jackson-annotations-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.11.0/jackson-core-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.11.0/jackson-datatype-jdk8-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.11.0/jackson-datatype-jsr310-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.11.0/jackson-module-parameter-names-2.11.0.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/2.3.0.RELEASE/spring-boot-starter-tomcat-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/9.0.35/tomcat-embed-core-9.0.35.jar:/Users/huazhizui/.m2/repository/org/glassfish/jakarta.el/3.0.3/jakarta.el-3.0.3.jar:/Users/huazhizui/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/9.0.35/tomcat-embed-websocket-9.0.35.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-web/5.2.6.RELEASE/spring-web-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-beans/5.2.6.RELEASE/spring-beans-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-webmvc/5.2.6.RELEASE/spring-webmvc-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-aop/5.2.6.RELEASE/spring-aop-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-context/5.2.6.RELEASE/spring-context-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-expression/5.2.6.RELEASE/spring-expression-5.2.6.RELEASE.jar Example</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<code>1149</code> 是 <code>1111</code> 的子进程， 说明我们这个项目是通过maven启动的。整个命令非常长， 但大部分是设置classpath， 简化看看，就是这样一条命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Xverify:none -XX:TieredStopAtLevel=1 -cp ... Example</span><br></pre></td></tr></table></figure>
+
+<p>得证，springboot 的运行方式，就是一个普通java 程序运行的方式</p>
+<p>当然这种通过maven插件启动的方式， 只能在开发时用， 上线的话应该打成<strong>可运行jar包</strong>来运行</p>
+<p>仔细观察下 -cp， 其实就是我们项目的<code>/target/classes</code> 目录和所有依赖jar 的组合， 很正常，很标准</p>
+<p>既然我们项目只是个普通java程序， 那为什么能提供web服务？ 这就是<code>SpringApplication.run</code> 干的事情了，我们main方法调用<code>SpringApplication.run</code>， 它先初始化好spring环境，根据依赖知道是个web项目而且引用了tomcat， 所以配置好tomcat， 然后启动tomcat，提供web服务功能。 </p>
+<p>至此，算是初识了spring boot</p>
 
     
 
@@ -492,7 +513,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建pom文件"><span class="toc-number">2.</span> <span class="toc-text">创建pom文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加web-starter"><span class="toc-number">3.</span> <span class="toc-text">添加web starter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开始编写业务代码了"><span class="toc-number">4.</span> <span class="toc-text">开始编写业务代码了</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运行项目"><span class="toc-number">5.</span> <span class="toc-text">运行项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目打包成可执行jar"><span class="toc-number">6.</span> <span class="toc-text">项目打包成可执行jar</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建pom文件"><span class="toc-number">2.</span> <span class="toc-text">创建pom文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加web-starter"><span class="toc-number">3.</span> <span class="toc-text">添加web starter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开始编写业务代码了"><span class="toc-number">4.</span> <span class="toc-text">开始编写业务代码了</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运行项目"><span class="toc-number">5.</span> <span class="toc-text">运行项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目打包成可执行jar"><span class="toc-number">6.</span> <span class="toc-text">项目打包成可执行jar</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#RestController、-RequestMapping注解"><span class="toc-number">7.1.</span> <span class="toc-text">@RestController、@RequestMapping注解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#EnableAutoConfiguration注解和自动配置"><span class="toc-number">7.2.</span> <span class="toc-text">@EnableAutoConfiguration注解和自动配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#main-方法"><span class="toc-number">7.3.</span> <span class="toc-text">main 方法</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -627,15 +648,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
