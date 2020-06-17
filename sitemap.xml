@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://huaxiaoer.github.io/2020/05/28/linux/use-kvm-in-centos/</loc>
+    <loc>https://huaxiaoer.github.io/2020/06/17/java/ipToLong/</loc>
     
-    <lastmod>2020-05-29T06:54:40.929Z</lastmod>
+    <lastmod>2020-06-17T10:07:00.680Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://huaxiaoer.github.io/2020/05/28/mac/make-centos-usb-boot/</loc>
+    <loc>https://huaxiaoer.github.io/2020/05/27/spring/spring-boot/configuration/</loc>
     
-    <lastmod>2020-05-28T06:11:19.238Z</lastmod>
+    <lastmod>2020-06-03T06:14:09.347Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://huaxiaoer.github.io/2020/05/28/linux/use-kvm-in-centos/</loc>
+    
+    <lastmod>2020-05-29T07:05:05.210Z</lastmod>
     
   </url>
   
@@ -23,14 +30,7 @@
   </url>
   
   <url>
-    <loc>https://huaxiaoer.github.io/2020/05/27/spring/spring-boot/configuration/</loc>
-    
-    <lastmod>2020-05-28T06:11:19.238Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://huaxiaoer.github.io/2020/05/27/spring/spring-boot/structuring-the-code/</loc>
+    <loc>https://huaxiaoer.github.io/2020/05/28/mac/make-centos-usb-boot/</loc>
     
     <lastmod>2020-05-28T06:11:19.238Z</lastmod>
     

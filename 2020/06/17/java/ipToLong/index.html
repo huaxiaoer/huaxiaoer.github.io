@@ -6,23 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://huaxiaoer.github.io">
-  <title>Kindrage 的blog</title>
+  <title>ip、ip:port和long的相互转换 | Kindrage 的blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="java 程序员 coder cassandra linux spring">
-    <meta name="description" content="随手记 - 我的程序员之路"> -->
-  
-  <meta name="description" content="随手记 - 我的程序员之路">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kindrage 的blog">
-<meta property="og:url" content="https://huaxiaoer.github.io/index.html">
+  <meta name="description" content="说明：转换仅支持ipv4地址 可实行性分析ipv4 地址格式: [0-255].[0-255].[0-255].[0-255] ipv4地址分为4段， 每一段是一个[0-255]之间的数字，可见第一段可使用的数字个数为256&#x3D;2^8 ， 刚好是一个字节能表示的无符号整数范围。那4段就是4个字节。 也就是说只需要4个字节就能存下ip地址， java中一个int是4个字节，一个int就能表示一个ipv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ip、ip:port和long的相互转换">
+<meta property="og:url" content="https://huaxiaoer.github.io/2020/06/17/java/ipToLong/index.html">
 <meta property="og:site_name" content="Kindrage 的blog">
-<meta property="og:description" content="随手记 - 我的程序员之路">
+<meta property="og:description" content="说明：转换仅支持ipv4地址 可实行性分析ipv4 地址格式: [0-255].[0-255].[0-255].[0-255] ipv4地址分为4段， 每一段是一个[0-255]之间的数字，可见第一段可使用的数字个数为256&#x3D;2^8 ， 刚好是一个字节能表示的无符号整数范围。那4段就是4个字节。 也就是说只需要4个字节就能存下ip地址， java中一个int是4个字节，一个int就能表示一个ipv">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-17T09:15:47.000Z">
+<meta property="article:modified_time" content="2020-06-17T10:07:00.680Z">
 <meta property="article:author" content="Kindrage">
-<meta property="article:tag" content="java 程序员 coder cassandra linux spring">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Kindrage 的blog" type="application/atom+xml">
@@ -212,25 +210,25 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-java/ipToLong" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-java/ipToLong" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/06/17/java/ipToLong/">ip、ip:port和long的相互转换</a>
-	
+    <h1 class="article-title" itemprop="name">
+      ip、ip:port和long的相互转换
     </h1>
   
 
 
   
   
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2020/06/17/java/ipToLong/" class="archive-article-date">
         <time datetime="2020-06-17T09:15:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
 </a>
@@ -238,6 +236,27 @@
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">577字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -261,6 +280,26 @@
 
     
 
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Kindrage
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://huaxiaoer.github.io/2020/06/17/java/ipToLong/" title="ip、ip:port和long的相互转换" target="_blank">https://huaxiaoer.github.io/2020/06/17/java/ipToLong/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -292,16 +331,76 @@
 
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/06/17/java/ipToLong/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://huaxiaoer.github.io/2020/06/17/java/ipToLong/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/28/linux/use-kvm-in-centos/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Centos7使用KVM安装虚拟机</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -316,1339 +415,33 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux/use-kvm-in-centos" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/28/linux/use-kvm-in-centos/">Centos7使用KVM安装虚拟机</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/28/linux/use-kvm-in-centos/" class="archive-article-date">
-        <time datetime="2020-05-28T08:37:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>本文主要介绍在<code>centos7</code> 上使用<code>KVM</code>(Kernel-based Virtual Machine)安装和管理虚拟机步骤， 不对虚拟化和KVM做深入讨论</p>
-<p><a href="http://linux.dell.com/files/whitepapers/KVM_Virtualization_in_RHEL_7_Made_Easy.pdf" target="_blank" rel="noopener">官方文档</a> 是个PDF， 由于外网打开慢， 最好下载下来放本地。</p>
-<h3 id="KVM-简介"><a href="#KVM-简介" class="headerlink" title="KVM 简介"></a>KVM 简介</h3><p><code>KVM</code>(Kernel-based Virtual Machine) 是一个Linux内核模块，允计用户空间进程使用硬件虚拟化特性，支持Intel和AMD cpu。KVM模块使得虚拟机可以像一个普通用户进程一样运行。</p>
-<p>KVM 使用 <code>QEMU</code>实现I/O硬件模拟，<code>QEMU</code>是运行在用户空间的一种模拟器，能够以非常好的性能模拟各种处理器，配合KVM模块， 性能几乎可以接近物理机。</p>
-<p>KVM使用<code>libvirt</code>的API和工具来管理虚拟机，常用的工具有：<code>virsh</code>、 <code>virt- install</code> 、 <code>virt-clone</code></p>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><h4 id="物理机"><a href="#物理机" class="headerlink" title="物理机"></a>物理机</h4><p>首先，得有一台物理机， 安装好centos7系统。</p>
-<p>安装得所有虚拟机cpu数、内存大小、磁盘空间 之和，是可以超过物理机实际大小的。</p>
-<h4 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h4><p>首先要确认在<code>BIOS</code>设置里面开启了虚拟化技术(<code>Virtualization Technology</code> )， 如果没有开启，要重启电脑，进BIOS设置。</p>
-<p>然后，检查处理器是否支持虚拟化技术（不是必须， 不支持的话， 性能不好）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ grep -E <span class="string">'svm|vmx'</span> /proc/cpuinfo</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><code>vmx</code> 是intel 处理器的</p>
-</li>
-<li><p><code>svm</code> 是AMD的</p>
-</li>
-</ul>
-<p>如果有内容显示出来， 说明就是支持的。</p>
-<h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y qemu-kvm libvirt libvirt-python libguestfs-tools virt-install</span><br></pre></td></tr></table></figure>
-
-<p>启用<code>libvirtd</code>服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> libvirtd </span><br><span class="line">$ systemctl start libvirtd</span><br></pre></td></tr></table></figure>
-
-<p>查看内核模块是否加载</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ lsmod | grep kvm</span><br><span class="line">kvm_intel             188644  12 (只能Intel平台有这个)</span><br><span class="line">kvm                   621480  1 kvm_intel</span><br><span class="line">irqbypass              13503  7 kvm</span><br></pre></td></tr></table></figure>
-
-<p>如果没有加载，运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ modprobe kvm</span><br><span class="line">$ modprobe kvm-intel</span><br></pre></td></tr></table></figure>
-
-<p>然后再检查一下</p>
-<h4 id="操作系统安装文件"><a href="#操作系统安装文件" class="headerlink" title="操作系统安装文件"></a>操作系统安装文件</h4><p>支持网络安装，本地安装， 鉴于我们的网速， 建议先下载好<code>iso</code>到本地。</p>
-<h4 id="配置网络桥接"><a href="#配置网络桥接" class="headerlink" title="配置网络桥接"></a>配置网络桥接</h4><p>默认情况下， 虚拟机只能通过内部网段<code>192.168.122.0</code>访问宿主机和同一宿主机上的其它虚拟机。如果想让虚拟机正常联网， 需要通过桥接，按如下步骤配置网桥：</p>
-<ol>
-<li><p>修改目前网卡配置文件<code>/etc/sysconfig/network-scripts/ifcfg-enp3s0</code>, 这个文件名，每台机器可能不一样</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">TYPE</span>=<span class="string">"Ethernet"</span></span><br><span class="line"><span class="comment">#添加这一行配置</span></span><br><span class="line"><span class="attr">BRIDGE</span>=br0</span><br><span class="line"><span class="attr">PROXY_METHOD</span>=<span class="string">"none"</span></span><br><span class="line"><span class="attr">BROWSER_ONLY</span>=<span class="string">"no"</span></span><br><span class="line"><span class="attr">BOOTPROTO</span>=<span class="string">"none"</span>   </span><br><span class="line"><span class="attr">DEFROUTE</span>=<span class="string">"yes"</span></span><br><span class="line"><span class="attr">IPV4_FAILURE_FATAL</span>=<span class="string">"no"</span></span><br><span class="line"><span class="attr">IPV6INIT</span>=<span class="string">"yes"</span></span><br><span class="line"><span class="attr">IPV6_AUTOCONF</span>=<span class="string">"yes"</span></span><br><span class="line"><span class="attr">IPV6_DEFROUTE</span>=<span class="string">"yes"</span></span><br><span class="line"><span class="attr">IPV6_FAILURE_FATAL</span>=<span class="string">"no"</span></span><br><span class="line"><span class="attr">IPV6_ADDR_GEN_MODE</span>=<span class="string">"stable-privacy"</span></span><br><span class="line"><span class="attr">NAME</span>=<span class="string">"enp3s0"</span></span><br><span class="line"><span class="attr">UUID</span>=<span class="string">"3813d279-4934-4cf1-aadd-5248a2ff1828"</span></span><br><span class="line"><span class="attr">DEVICE</span>=<span class="string">"enp3s0"</span></span><br><span class="line"><span class="attr">ONBOOT</span>=<span class="string">"yes"</span></span><br><span class="line"><span class="comment">#分配ip这几行要注释掉</span></span><br><span class="line"><span class="comment">#IPADDR="192.168.5.160"</span></span><br><span class="line"><span class="comment">#PREFIX="24"</span></span><br><span class="line"><span class="comment">#GATEWAY="192.168.5.1"</span></span><br><span class="line"><span class="comment">#DNS1="192.168.5.1"</span></span><br><span class="line"><span class="attr">IPV6_PRIVACY</span>=<span class="string">"no"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建桥接网卡配置文件<code>/etc/sysconfig/network-scripts/ifcfg-br0</code></p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">TYPE</span>=<span class="string">"Bridge"</span></span><br><span class="line"><span class="attr">PROXY_METHOD</span>=<span class="string">"none"</span></span><br><span class="line"><span class="attr">BROWSER_ONLY</span>=<span class="string">"no"</span></span><br><span class="line"><span class="attr">BOOTPROTO</span>=<span class="string">"none"</span></span><br><span class="line"><span class="attr">DEFROUTE</span>=<span class="string">"yes"</span></span><br><span class="line"><span class="attr">IPV4_FAILURE_FATAL</span>=<span class="string">"no"</span></span><br><span class="line"><span class="attr">IPV6INIT</span>=<span class="string">"no"</span></span><br><span class="line"><span class="attr">IPV6_AUTOCONF</span>=<span class="string">"yes"</span></span><br><span class="line"><span class="attr">IPV6_DEFROUTE</span>=<span class="string">"yes"</span></span><br><span class="line"><span class="attr">IPV6_FAILURE_FATAL</span>=<span class="string">"no"</span></span><br><span class="line"><span class="attr">IPV6_ADDR_GEN_MODE</span>=<span class="string">"stable-privacy"</span></span><br><span class="line"><span class="attr">NAME</span>=<span class="string">"br0"</span></span><br><span class="line"><span class="comment">#UUID="3813d279-4934-4cf1-aadd-5248a2ff1828"</span></span><br><span class="line"><span class="attr">DEVICE</span>=<span class="string">"br0"</span></span><br><span class="line"><span class="attr">ONBOOT</span>=<span class="string">"yes"</span></span><br><span class="line"><span class="comment"># ip配置和原网卡一致</span></span><br><span class="line"><span class="attr">IPADDR</span>=<span class="string">"192.168.5.160"</span></span><br><span class="line"><span class="attr">PREFIX</span>=<span class="string">"24"</span></span><br><span class="line"><span class="attr">GATEWAY</span>=<span class="string">"192.168.5.1"</span></span><br><span class="line"><span class="attr">DNS1</span>=<span class="string">"192.168.5.1"</span></span><br><span class="line"><span class="attr">IPV6_PRIVACY</span>=<span class="string">"no"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启网络服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service network restart</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>检查宿主机网络是否正常</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ ifconfig</span><br><span class="line">br0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.5.160  netmask 255.255.255.0  broadcast 192.168.5.255</span><br><span class="line">        inet6 fe80::a1f:71ff:fe08:882  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 08:1f:71:08:08:82  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 158  bytes 13663 (13.3 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 23  bytes 2062 (2.0 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">enp3s0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        ether 08:1f:71:08:08:82  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 7730654  bytes 5696887592 (5.3 GiB)</span><br><span class="line">        RX errors 0  dropped 20  overruns 0  frame 0</span><br><span class="line">        TX packets 973360  bytes 83120547 (79.2 MiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</span><br><span class="line">        inet 127.0.0.1  netmask 255.0.0.0</span><br><span class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br><span class="line">        loop  txqueuelen 1000  (Local Loopback)</span><br><span class="line">        RX packets 32  bytes 2592 (2.5 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 32  bytes 2592 (2.5 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br></pre></td></tr></table></figure>
-
-<p>可以看到<code>br0</code> 的ip是和原来一样的， 说明正常了。 可以ping一下内网其它机器， 外网域名来进一步确认</p>
-</li>
-</ol>
-<h4 id="防火墙和SELINUX"><a href="#防火墙和SELINUX" class="headerlink" title="防火墙和SELINUX"></a>防火墙和SELINUX</h4><p>直接关掉</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ setenforce 0</span><br><span class="line">$ vim /etc/sysconfig/selinux</span><br><span class="line">SELINUX=disabled</span><br><span class="line">$ systemctl stop firewalld</span><br></pre></td></tr></table></figure>
-
-<p> 生产环境不允许的话，参考原文操作</p>
-<p>环境准备完毕!</p>
-<h3 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ virt-install \</span><br><span class="line">  --network bridge:br0 \ </span><br><span class="line">  --name vm61 \</span><br><span class="line">  --ram=2048 \</span><br><span class="line">  --vcpus=2 \</span><br><span class="line">  --disk path=/home/vm-images/vm61.img,size=100 \</span><br><span class="line">  --graphics none \</span><br><span class="line">  --location=/tmp/CentOS-7-x86_64-DVD-1908.iso \</span><br><span class="line">  --extra-args=<span class="string">"console=tty0 console=ttyS0,115200"</span></span><br></pre></td></tr></table></figure>
-
-<p>如此就创建了一个磁盘100G，内存2048M，2核 的虚拟机， 参数说明：</p>
-<ul>
-<li><code>--network</code>： 指定网卡， 这里选择前面创建的网桥<code>br0</code></li>
-<li><code>--name</code>： 虚拟机名称</li>
-<li><code>--ram</code>：虚拟机内存， 单位MB</li>
-<li><code>--vcpu</code> ： cpu数量</li>
-<li><code>--disk path=/home/vm-images/vm61.img,size=100</code>: 虚拟机镜像文件存放的路径（确保这个目录挂载的盘有足够的空间），<code>size</code>参数指定虚拟机磁盘空间的大小</li>
-<li><code>--graphics</code> :  设置安装程序是否使用图形化界面，设置<code>none</code>的话，在安装过程中全直接使用文件方式在控制台配置虚拟机一些必要配置</li>
-<li><code>--location=/tmp/CentOS-7-x86_64-DVD-1908.iso</code>： 指定虚拟机要安装的操作系统的镜像文件位置， 可以是本地的， 也可以指定网络地址。我们这里指定的是本地的</li>
-<li><code>--extra-args=&quot;console=tty0 console=ttyS0,115200&quot;</code>:  此选项的值，在安装程序启动的时候作为启动参数使用。 我们设置的值，告诉安装程序运行的时候要开启控制台， 这个非常重要， 不要没有办法进行安装配置</li>
-</ul>
-<p>更详细的说明请看</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ man virt-install</span><br></pre></td></tr></table></figure>
-
-
-
-<p>安装过程中有很多需要配置的地方，请按控制台提示依次进行设置。 前面有<code>[!]</code>标记的都是必须要设置的， <code>[x]</code>标记的表示已经设置完成的， <code>[]</code>表示可选项</p>
-<h3 id="复制虚拟机"><a href="#复制虚拟机" class="headerlink" title="复制虚拟机"></a>复制虚拟机</h3><p>一般情况下， 我们都会创建多个虚拟机， 如果虚拟机的配置都相同，使用复制功能就很方便了，几秒钟建一个不是梦。</p>
-<p>比如要所前面创建的虚拟机<code>vm61</code>复制一个叫<code>vm62</code>:</p>
-<ol>
-<li><p>暂停被复制的虚拟机。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virsh <span class="built_in">suspend</span> vm61</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行复制命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virt-clone --connect qemu:///system --original vm61 --name vm62 --file /home/vm-images/vm62.img</span><br></pre></td></tr></table></figure>
-
-<p>这步快的话几秒钟， 时长由被复制虚拟机的实际大小决定</p>
-</li>
-<li><p>恢复被复制机器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virsh resume vm61</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>刚复制出来的虚拟机是停止状态的， 需要启动它：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ virsh start vm62</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>复制出来的机器和原机器所有属性（cpu，内存，磁盘空间等）一样， 只能修改一下MAC地址。 如果被复制机器使用的是<code>静态ip</code>， 那两个机器的ip都是一样的，那就有问题， 新机器会连不上网。这种情况需要使用宿主机通过控制台连上去修改ip配置， 后面会讲到怎么连。</p>
-<h3 id="管理虚拟机"><a href="#管理虚拟机" class="headerlink" title="管理虚拟机"></a>管理虚拟机</h3><h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p>展示全部虚拟机， 加上<code>--all</code> 选项所有状态都会显示， 不加则 只显示<code>running</code>的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ virsh list --all</span><br><span class="line"> Id    名称                         状态</span><br><span class="line">----------------------------------------------------</span><br><span class="line"> 6     vm61                           running</span><br><span class="line"> 8     vm62                           running</span><br><span class="line"> -     vm63                           关闭</span><br></pre></td></tr></table></figure>
-
-<p>显示虚拟机信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ virsh dominfo vm61</span><br><span class="line">Id:             6</span><br><span class="line">名称：       vm61</span><br><span class="line">UUID:           354134f5-fd04-42ee-a49f-ddb3c4b65d96</span><br><span class="line">OS 类型：    hvm</span><br><span class="line">状态：       running</span><br><span class="line">CPU：          2</span><br><span class="line">CPU 时间：   1240.4s</span><br><span class="line">最大内存： 2097152 KiB</span><br><span class="line">使用的内存： 2097152 KiB</span><br><span class="line">持久：       是</span><br><span class="line">自动启动： 启用</span><br><span class="line">管理的保存： 否</span><br><span class="line">安全性模式： selinux</span><br><span class="line">安全性 DOI： 0</span><br><span class="line">安全性标签： system_u:system_r:svirt_t:s0:c987,c1009 (enforcing)</span><br></pre></td></tr></table></figure>
-
-<p>关闭虚拟机</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ virsh shutdown vm63</span><br><span class="line">域 vm63 被关闭</span><br></pre></td></tr></table></figure>
-
-<p>启动虚拟机</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ virsh start vm63</span><br><span class="line">域 vm63 已开始</span><br></pre></td></tr></table></figure>
-
-<p>开启自动启动，开启后宿主机启动，虚拟机就会自动启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ virsh autostart vm61</span><br><span class="line">域 vm61标记为自动开始</span><br></pre></td></tr></table></figure>
-
-<p>关闭自动启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ virsh autostart --<span class="built_in">disable</span> vm61</span><br><span class="line">域 vm61取消标记为自动开始</span><br></pre></td></tr></table></figure>
-
-<h4 id="虚拟机控制台访问"><a href="#虚拟机控制台访问" class="headerlink" title="虚拟机控制台访问"></a>虚拟机控制台访问</h4><p>如前面复制虚拟机时讲到的， 如果虚拟机网络配置有问题， 不能远程访问。 那这时候就只能使用宿主机通过连接虚拟机控制台来操作虚拟机了。 控制台访问设置如下：</p>
-<ol>
-<li><p>首先在宿主机的<code>/etc/grub.conf</code> 文件( 如果还没有该文件，就新建一个)添加如下内容：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">console</span>=tty0 console=ttyS0,<span class="number">115200</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启虚拟机</p>
-</li>
-<li><p>在宿主机上运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ virsh console vm61</span><br><span class="line">连接到域 vm61</span><br><span class="line">换码符为 ^]</span><br></pre></td></tr></table></figure>
-
-<p>出现这个提示的时候，要再按一下<code>回车键</code>，就进入虚拟机的控制台了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">virsh console vm61</span><br><span class="line">连接到域 vm61</span><br><span class="line">换码符为 ^]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CentOS Linux 7 (Core)</span><br><span class="line">Kernel 3.10.0-1062.el7.x86_64 on an x86_64</span><br><span class="line"></span><br><span class="line">vm61 login:</span><br></pre></td></tr></table></figure>
-
-<p>这是虚拟机的登录界面。 如果要退出虚拟机控制台，按 组合键<code>CTRL</code>+<code>]</code>， 这个输入的其实就是<code>^]</code>。 这就回到了宿主机的控制台了</p>
-</li>
-</ol>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">kvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux/" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/28/linux/use-kvm-in-centos/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#可实行性分析"><span class="toc-number">1.</span> <span class="toc-text">可实行性分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码实现"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
 
-  
-    <article id="post-mac/make-centos-usb-boot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/28/mac/make-centos-usb-boot/">mac制作centos7 u盘安装盘</a>
-	
-    </h1>
-  
 
 
-  
-  
-<a href="/2020/05/28/mac/make-centos-usb-boot/" class="archive-article-date">
-        <time datetime="2020-05-28T05:55:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-28</time>
-</a>
 
-  
-  
-    
 
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="1-下载cento7的镜像"><a href="#1-下载cento7的镜像" class="headerlink" title="1. 下载cento7的镜像"></a>1. 下载cento7的镜像</h4><p><a href="https://www.centos.org/" target="_blank" rel="noopener">centos官网</a> 去找想要的版本下载就行了。</p>
-<p>比如这个阿里云的镜像可能会快些：<a href="http://mirrors.aliyun.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-DVD-1908.iso" target="_blank" rel="noopener">http://mirrors.aliyun.com/centos/7.7.1908/isos/x86_64/CentOS-7-x86_64-DVD-1908.iso</a></p>
-<h4 id="2-插上U盘"><a href="#2-插上U盘" class="headerlink" title="2. 插上U盘"></a>2. 插上U盘</h4><p>插上U盘，先查看一下电脑上有哪些盘</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ diskutil list</span><br><span class="line">/dev/disk0 (internal, physical):</span><br><span class="line">   <span class="comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      GUID_partition_scheme                        *251.0 GB   disk0</span><br><span class="line">   1:                        EFI EFI                     314.6 MB   disk0s1</span><br><span class="line">   2:                 Apple_APFS Container disk1         250.7 GB   disk0s2</span><br><span class="line"></span><br><span class="line">/dev/disk1 (synthesized):</span><br><span class="line">   <span class="comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:      APFS Container Scheme -                      +250.7 GB   disk1</span><br><span class="line">                                 Physical Store disk0s2</span><br><span class="line">   1:                APFS Volume Macintosh HD - 数据     141.3 GB   disk1s1</span><br><span class="line">   2:                APFS Volume Preboot                 82.4 MB    disk1s2</span><br><span class="line">   3:                APFS Volume Recovery                528.1 MB   disk1s3</span><br><span class="line">   4:                APFS Volume VM                      4.3 GB     disk1s4</span><br><span class="line">   5:                APFS Volume Macintosh HD            11.1 GB    disk1s5</span><br><span class="line"></span><br><span class="line">/dev/disk2 (external, physical):</span><br><span class="line">   <span class="comment">#:                       TYPE NAME                    SIZE       IDENTIFIER</span></span><br><span class="line">   0:     FDisk_partition_scheme                        *15.7 GB    disk2</span><br><span class="line">   1:               Windows_NTFS ESD-USB                 15.7 GB    disk2s1</span><br></pre></td></tr></table></figure>
 
-<p><code>/dev/disk2</code> 就是我的U盘</p>
-<h4 id="2-卸载U盘"><a href="#2-卸载U盘" class="headerlink" title="2.  卸载U盘"></a>2.  卸载U盘</h4><p> 卸载<code>/dev/disk2</code>:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ diskutil unmountDisk /dev/disk2</span><br><span class="line">Unmount of all volumes on disk2 was successful</span><br></pre></td></tr></table></figure>
 
-<h4 id="3-使用dd-工具把镜像文件写到U盘里"><a href="#3-使用dd-工具把镜像文件写到U盘里" class="headerlink" title="3. 使用dd 工具把镜像文件写到U盘里"></a>3. 使用<code>dd</code> 工具把镜像文件写到U盘里</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dd <span class="keyword">if</span>=/Users/huazhizui/Downloads/CentOS-7-x86_64-DVD-1908.iso of=/dev/disk2 bs=1m</span><br><span class="line">Password:</span><br><span class="line">4448+0 records <span class="keyword">in</span></span><br><span class="line">4448+0 records out</span><br><span class="line">4664066048 bytes transferred <span class="keyword">in</span> 4102.428971 secs (1136904 bytes/sec)</span><br></pre></td></tr></table></figure>
 
-<p>整个过程可能需要几十分钟， 耐心等待。</p>
 
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/mac/" class="article-tag-list-link color4">mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/28/mac/make-centos-usb-boot/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring/spring-boot/configuration" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/27/spring/spring-boot/configuration/">spring boot 配置文件</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/27/spring/spring-boot/configuration/" class="archive-article-date">
-        <time datetime="2020-05-27T09:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="可扩展的配置"><a href="#可扩展的配置" class="headerlink" title="可扩展的配置"></a>可扩展的配置</h3><p>Spring 可以使用外部配置， 这样的话同一个包就可以在不同的运行环境， 使用不同的配置了， 同时也可以保护生产环境配置。</p>
-<p>外部配置支持的呈现方式：</p>
-<ul>
-<li><p><code>properties</code> 文件 </p>
-</li>
-<li><p><code>YAML</code> 文件</p>
-</li>
-<li><p><code>环境变量</code></p>
-</li>
-<li><p><code>命令行参数</code></p>
-</li>
-</ul>
-<p>获取属性值的方法：</p>
-<ol>
-<li><code>@Value</code> ： 通过<code>@Value</code>注解，注入到字段里</li>
-<li><code>Environment</code>： 通过<code>Environment</code>抽象类访问</li>
-<li><code>@ConfigurationProperties</code>： 通过<code>@ConfigurationProperties</code>注解绑定的类上</li>
-</ol>
-<p>spring 获取属性值的顺序：</p>
-<ol>
-<li><p>当<code>devtools</code>活动时 ，使用<code>devtools在</code>在<code>$HOME/.config/spring-boot</code>文件中的全局设置</p>
-</li>
-<li><p>测试类上<code>@TestPropertySource</code> 注解指定的配置</p>
-</li>
-<li><p>测试类上的<code>properties</code> 属性，使用<code>@SpringBootTest</code>注解时可用.</p>
-</li>
-<li><p>命令行参数</p>
-</li>
-<li><p><code>SPRING_APPLICATION_JSON</code> 里配置的属性值， <code>SPRING_APPLICATION_JSON</code>是一个环境变量或者系统属性。使用方法如下：</p>
-<p>作为环境变量：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ SPRING_APPLICATION_JSON=<span class="string">'&#123;"acme":&#123;"name":"test"&#125;&#125;'</span> java -jar myapp.jar</span><br></pre></td></tr></table></figure>
-
-<p>或者作为系统属性：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -Dspring.application.json=<span class="string">'&#123;"name":"test"&#125;'</span> -jar myapp.jar</span><br></pre></td></tr></table></figure>
-
-<p>或者作为spring 命令行参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar myapp.jar --spring.application.json=<span class="string">'&#123;"name":"test"&#125;'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>ServletConfig</code> 初始化参数</p>
-</li>
-<li><p><code>ServletContext</code> 初始参数</p>
-</li>
-<li><p>JNDI from <code>java:comp/env</code></p>
-</li>
-<li><p>Java 系统属性<code>System.getProperties()</code></p>
-</li>
-<li><p>操作系统环境变量</p>
-</li>
-<li><p><code>RandomValuePropertySource</code> </p>
-</li>
-<li><p>Jar包外，带有指定<code>profile</code>的<code>application proerties</code>文件（<code>application-{profile}.properties</code>），YAML也可以</p>
-</li>
-<li><p>Jar包里，带有指定<code>profile</code>的<code>application proerties</code>文件（<code>application-{profile}.properties</code>）YAML也可以</p>
-</li>
-<li><p>Jar包外的<code>application.properties</code>文件（YAML也可以）</p>
-</li>
-<li><p>Jar包里的<code>application.properties</code>文件（YAML也可以）</p>
-</li>
-<li><p>配置类上的<code>@PropertySource</code>指定的配置。<strong>注意：</strong> 这样指定的配置，在Spring上下文件刷新之前是不会添加到<code>Environment</code>里的， 所以对于某些配置来说有就迟了，如<code>logging.*</code> and <code>spring.main.*</code>，它们是在刷新之前就要被读取</p>
-</li>
-<li><p><code>SpringApplication.setDefaultProperties</code> 指定的默认配置</p>
-</li>
-</ol>
-<p>假设我们有如下组件：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;name&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在应用的<code>classpath</code> 里（比如Jar包里）有一个<code>application.properties</code>提供了<code>name</code>属性的值。 当要在测试环境运行的时候， 可以在jar包外放一个<code>application.properties</code>，可以覆盖<code>name</code>属性的值。 对于一次性的配置， 可以用命令行参数设置:<code>java -jar app.jar --name=&quot;Spring&quot;</code></p>
-<p>Spring Boot 加载配置文件的时候支持通配符，默认是Jar外<code>config/*/</code>目录下的<code>application.properties</code>文件都能加载到。指定<code>spring.config.additional-location</code> 和 <code>spring.config.location</code> 属性的时候也支持通配符。</p>
-<p>如果通配符匹配到的目录有多个， 那么每个目录下的<code>application.properties</code>都会被加载处理，比如有两个配置文件<code>/config/redis/application.properties</code> 和 <code>/config/mysql/application.properties</code>，把加载路径配置为<code>config/*/</code>,那么这两个文件里的属性都能被加载到。</p>
-<p><strong>注意：</strong> 如果匹配目录的话，只能有一个<code>*</code>号并且要以<code>/</code>结尾，匹配文件的话格式为<code>*/&lt;filename&gt;</code></p>
-<h4 id="配置随机值"><a href="#配置随机值" class="headerlink" title="配置随机值"></a>配置随机值</h4><p><code>RandomValuePropertySource</code> 可以产生<code>integer</code>, <code>long</code>,<code>uuids</code>,  <code>string</code> 类型的随机值</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">my.secret</span>=<span class="string">$&#123;random.value&#125;</span></span><br><span class="line"><span class="meta">my.number</span>=<span class="string">$&#123;random.int&#125;</span></span><br><span class="line"><span class="meta">my.bignumber</span>=<span class="string">$&#123;random.long&#125;</span></span><br><span class="line"><span class="meta">my.uuid</span>=<span class="string">$&#123;random.uuid&#125;</span></span><br><span class="line"><span class="meta">my.number.less.than.ten</span>=<span class="string">$&#123;random.int(10)&#125;</span></span><br><span class="line"><span class="meta">my.number.in.range</span>=<span class="string">$&#123;random.int[1024,65536]&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="访问命令行参数"><a href="#访问命令行参数" class="headerlink" title="访问命令行参数"></a>访问命令行参数</h4><p>Spring boot 会把命令行可选参数(以<code>--</code>开头的参数)，转换为<code>property</code>并添加到<code>Environment</code>中， 而且命令行参数里的属性在比其它来源加载的属性优先级都高。</p>
-<p>如果不想命令行参数加入<code>Environment</code>,可以使用<code>SpringApplication.setAddCommandLineProperties(false)</code>来禁用。</p>
-<h4 id="Applicatin-属性配置文件-application-proerties"><a href="#Applicatin-属性配置文件-application-proerties" class="headerlink" title="Applicatin 属性配置文件 application.proerties"></a>Applicatin 属性配置文件 application.proerties</h4><p><code>application.properties</code> 是spring boot的默认配置文件， spring会从以下位置去加载（已按优先级排序）：</p>
-<ol>
-<li>当前目录的<code>/config</code>子目录</li>
-<li>当前目录</li>
-<li>classpath的<code>/config</code>子包</li>
-<li>classpath目录下</li>
-</ol>
-<p>当然， 配置文件名是可以改的，通过修改<code>spring.config.name</code>属性， 路径也可以改，通过修改<code>spring.config.location</code>属性。</p>
-<p><strong>注意：</strong> 这两上属性非常早就要被spring用到， 才能决定去哪里加载配置文件。 所以一般是要设置为系统环境变量、或者系统属性、或者命令行参数。 <del><code>spring.config.location</code> 值只能是目录， 可以多个目录以逗号<code>,</code>分隔，不支持<code>profile</code></del></p>
-<p>todo</p>
-<h4 id="指定profile的属性"><a href="#指定profile的属性" class="headerlink" title="指定profile的属性"></a>指定profile的属性</h4><p>有些属性是和运行环境相关的， 我们希望在不同步运行环境使用不同一属性， 这时候就可以用<code>profie</code>。 和<code>profile</code> 相关的配置文件全名约定为：<code>application-{profile}.properties</code>。 在Spring <code>Environment</code> 中， profile是可以指定多个的， 是个数组， 默认值是<code>[default]</code>.</p>
-<p><strong>注意：</strong> <code>application.properties</code> 和 <code>application-{profile}.properties</code> 是叠加关系， 不是互斥关系 。 spring 先加载<code>application.properties</code>， 然后再加载当前激活的<code>profile</code>， 如果有相同步属性值就用 profile里面的覆盖<code>application.properties</code>里面的。 如果指定了多个<code>profile</code>， 也是按顺序加载，最多属性是多个<code>profile</code>的并集， 对于相同的属性， 后面的覆盖前面的。</p>
-<p><strong>注意：</strong> 如果<code>spring.config.location</code> 属性里面指定了具体文件名， 那这些文件是不能使用对应的profile的。如果想使用<code>profile</code>， <code>spring.config.location</code>属性只能使用目录</p>
-<p>我们有3个配置文件， <code>application.properties</code> ，还有两个profile： <code>test</code> 和<code>test2</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ tree config/</span><br><span class="line">config/</span><br><span class="line">├── application.properties</span><br><span class="line">├── application-test2.properties</span><br><span class="line">└── application-test.properties</span><br></pre></td></tr></table></figure>
-
-<p>内容分别是</p>
-<p><code>application.properties</code></p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">my.name</span>=<span class="string">developer</span></span><br><span class="line"><span class="meta">my.env</span>=<span class="string">dev</span></span><br><span class="line"><span class="meta">my.profile</span>=<span class="string">default</span></span><br></pre></td></tr></table></figure>
-
-<p><code>application-test.properties</code></p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">my.env</span>=<span class="string">test</span></span><br><span class="line"><span class="meta">my.profile</span>=<span class="string">test0</span></span><br></pre></td></tr></table></figure>
-
-<p><code>application-test2.properties</code></p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">my.profile</span>=<span class="string">test2</span></span><br></pre></td></tr></table></figure>
-
-<p>建了个java类，访问<code>localhost:8080</code>的时候，程序会介绍自己的运行环境</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;my.name&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;my.env:22&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String env;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;my.profile:22&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String profile;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">    <span class="function">String <span class="title">home</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> MessageFormat.format(<span class="string">"Hello ! My name is &#123;0&#125;, env:&#123;1&#125;, profile:&#123;2&#125;"</span>,name,env,profile);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Example<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当使用<code>test</code>、<code>test2</code>两个profile的时候</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar myproject-0.0.1-SNAPSHOT.jar --spring.profiles.active=<span class="built_in">test</span>,test2</span><br></pre></td></tr></table></figure>
-
-<p>结果为:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:8080</span><br><span class="line">Hello ! My name is developer, env:<span class="built_in">test</span>, profile:test2</span><br></pre></td></tr></table></figure>
-
-<p>可以看到指定了profile的时候， 只存在于<code>application.properties</code>中的<code>my.name</code>属性成功加载到了。 而<code>application-test.properties</code>中的<code>my.env</code> 覆盖了<code>application.properties</code>中的。而<code>test2</code>中的<code>my.profile</code>覆盖了<code>test</code>中的。</p>
-<p><strong>总结</strong></p>
-<ol>
-<li><code>application.properties</code> 和 <code>profile</code> 之间是<code>并集关系</code>，对于相同的属性， <code>profile</code> 覆盖 <code>application.properties</code>。</li>
-<li><code>profile</code> 之间也是求并集，对相同部分， 按指定顺序，后面的覆盖前面的。</li>
-</ol>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/spring/" class="article-tag-list-link color2">spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/spring/spring-boot/" class="article-tag-list-link color2">spring-boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/27/spring/spring-boot/configuration/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring/spring-boot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/27/spring/spring-boot/">structuring-the-code</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/27/spring/spring-boot/" class="archive-article-date">
-        <time datetime="2020-05-27T01:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/spring/" class="article-tag-list-link color2">spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/27/spring/spring-boot/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring/spring-boot/build-spring-app" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/25/spring/spring-boot/build-spring-app/">搭建第一个 Spring Boot web应用</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/25/spring/spring-boot/build-spring-app/" class="archive-article-date">
-        <time datetime="2020-05-25T08:29:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>作为一个老java， 说来惭愧，spring boot出来这么多年了，才第一次使用。 不知从何下手，先看看<a href="https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/reference/html/getting-started.html#getting-started-first-application" target="_blank" rel="noopener" title="创建第一个spring boot 应用">官方文档</a> 说了些什么吧。</p>
-<p>后面内容就是照搬， 没动脑，只是记录，免得以后还得面对abc，实在是累</p>
-<h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>首先确认开发环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ java -version</span><br><span class="line">java version <span class="string">"1.8.0_201"</span></span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_201-b09)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)</span><br><span class="line"></span><br><span class="line">$ mvn -v</span><br><span class="line">Apache Maven 3.6.0 (97c98ec64a1fdfee7767ce5ffb20918da4f719f3; 2018-10-25T02:41:47+08:00)</span><br><span class="line">Maven home: /Users/huazhizui/application/apache-maven-3.6.0</span><br><span class="line">Java version: 1.8.0_201, vendor: Oracle Corporation, runtime: /Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/jre</span><br><span class="line">Default locale: zh_CN, platform encoding: UTF-8</span><br><span class="line">OS name: <span class="string">"mac os x"</span>, version: <span class="string">"10.15.4"</span>, arch: <span class="string">"x86_64"</span>, family: <span class="string">"mac"</span></span><br></pre></td></tr></table></figure>
-
-<p>创建一个目录，作为本示例的工作目录， 后面都操作都在这个目录中进行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir spring-boot-demo2</span><br><span class="line">$ <span class="built_in">cd</span> spring-boot-demo2</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="创建pom文件"><a href="#创建pom文件" class="headerlink" title="创建pom文件"></a>创建pom文件</h4><p>作为一个maven项目， 那必须得有一个<code>pom.xml</code>文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch pom.xml</span><br></pre></td></tr></table></figure>
-
-<p>在<code>pom.xml</code> 文件中添加如下内容:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>myproject<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">developers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">developer</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">developers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">licenses</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">license</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">licenses</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scm</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">scm</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Additional lines to be added here... --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这个<code>pom</code>里面我们只设置了一个<code>parent</code>节点， <code>spring-boot-starter-parent</code> 是一个特殊的<code>starter</code>，它主要提供一些maven默认配置， 还有依赖管理器， 这样我们在引入依赖的时候， 就可以省略<code>version</code>标签了， 他们使用<code>spring-boot-starter-parent</code> 中<code>dependency-management</code> 里定义的版本。 但是它本身不会添加任何实际的依赖。我们查看一下maven依赖树,可以看到依赖是空的：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn dependency:tree</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="添加web-starter"><a href="#添加web-starter" class="headerlink" title="添加web starter"></a>添加web starter</h4><p>既然要做web应用， 那添加的第一个依赖必须是<code>spring-boot-starter-web</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 省略了其它配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 省略了其它配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>重新检查依赖:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">$ mvn dependency:tree</span><br><span class="line">[INFO] com.example:myproject:jar:0.0.1-SNAPSHOT</span><br><span class="line">[INFO] \- org.springframework.boot:spring-boot-starter-web:jar:2.3.0.RELEASE:compile</span><br><span class="line">[INFO]    +- org.springframework.boot:spring-boot-starter:jar:2.3.0.RELEASE:compile</span><br><span class="line">[INFO]    |  +- org.springframework.boot:spring-boot:jar:2.3.0.RELEASE:compile</span><br><span class="line">[INFO]    |  +- org.springframework.boot:spring-boot-autoconfigure:jar:2.3.0.RELEASE:compile</span><br><span class="line">[INFO]    |  +- org.springframework.boot:spring-boot-starter-logging:jar:2.3.0.RELEASE:compile</span><br><span class="line">[INFO]    |  |  +- ch.qos.logback:logback-classic:jar:1.2.3:compile</span><br><span class="line">[INFO]    |  |  |  +- ch.qos.logback:logback-core:jar:1.2.3:compile</span><br><span class="line">[INFO]    |  |  |  \- org.slf4j:slf4j-api:jar:1.7.30:compile</span><br><span class="line">[INFO]    |  |  +- org.apache.logging.log4j:log4j-to-slf4j:jar:2.13.2:compile</span><br><span class="line">[INFO]    |  |  |  \- org.apache.logging.log4j:log4j-api:jar:2.13.2:compile</span><br><span class="line">[INFO]    |  |  \- org.slf4j:jul-to-slf4j:jar:1.7.30:compile</span><br><span class="line">[INFO]    |  +- jakarta.annotation:jakarta.annotation-api:jar:1.3.5:compile</span><br><span class="line">[INFO]    |  +- org.springframework:spring-core:jar:5.2.6.RELEASE:compile</span><br><span class="line">[INFO]    |  |  \- org.springframework:spring-jcl:jar:5.2.6.RELEASE:compile</span><br><span class="line">[INFO]    |  \- org.yaml:snakeyaml:jar:1.26:compile</span><br><span class="line">[INFO]    +- org.springframework.boot:spring-boot-starter-json:jar:2.3.0.RELEASE:compile</span><br><span class="line">[INFO]    |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.11.0:compile</span><br><span class="line">[INFO]    |  |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.11.0:compile</span><br><span class="line">[INFO]    |  |  \- com.fasterxml.jackson.core:jackson-core:jar:2.11.0:compile</span><br><span class="line">[INFO]    |  +- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.11.0:compile</span><br><span class="line">[INFO]    |  +- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.11.0:compile</span><br><span class="line">[INFO]    |  \- com.fasterxml.jackson.module:jackson-module-parameter-names:jar:2.11.0:compile</span><br><span class="line">[INFO]    +- org.springframework.boot:spring-boot-starter-tomcat:jar:2.3.0.RELEASE:compile</span><br><span class="line">[INFO]    |  +- org.apache.tomcat.embed:tomcat-embed-core:jar:9.0.35:compile</span><br><span class="line">[INFO]    |  +- org.glassfish:jakarta.el:jar:3.0.3:compile</span><br><span class="line">[INFO]    |  \- org.apache.tomcat.embed:tomcat-embed-websocket:jar:9.0.35:compile</span><br><span class="line">[INFO]    +- org.springframework:spring-web:jar:5.2.6.RELEASE:compile</span><br><span class="line">[INFO]    |  \- org.springframework:spring-beans:jar:5.2.6.RELEASE:compile</span><br><span class="line">[INFO]    \- org.springframework:spring-webmvc:jar:5.2.6.RELEASE:compile</span><br><span class="line">[INFO]       +- org.springframework:spring-aop:jar:5.2.6.RELEASE:compile</span><br><span class="line">[INFO]       +- org.springframework:spring-context:jar:5.2.6.RELEASE:compile</span><br><span class="line">[INFO]       \- org.springframework:spring-expression:jar:5.2.6.RELEASE:compile</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  03:08 min</span><br><span class="line">[INFO] Finished at: 2020-05-25T16:29:09+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
-
-<p>可以看到<code>spring-web</code> <code>spring-beans</code> <code>spring-webmvc</code> 等spring web应用必须的jar包都添加进来了， 还有一个特殊的<code>spring-boot-starter-tomcat</code>， 后面会知道它有什么用。 </p>
-<p>至此， spring boot web 开发环境就搭建好了， 简直不能更方便了。 开始写业务代码吧</p>
-<h4 id="开始编写业务代码了"><a href="#开始编写业务代码了" class="headerlink" title="开始编写业务代码了"></a>开始编写业务代码了</h4><p>根据maven的尿性，代码要放在<code>src/main/java</code> 目录，我们建一个：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p src/main/java</span><br></pre></td></tr></table></figure>
-
-<p>然后在此目录下建我们java文件<code>src/main/java/Example.java</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch src/main/java/Example.java</span><br></pre></td></tr></table></figure>
-
-<p>现在项目目录结构如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ tree .</span><br><span class="line">.</span><br><span class="line">├── pom.xml</span><br><span class="line">└── src</span><br><span class="line">    └── main</span><br><span class="line">        └── java</span><br><span class="line">            └── Example.java</span><br></pre></td></tr></table></figure>
-
-<p>用最喜欢的编辑器编辑<code>Example.java</code>， 写入如下内容</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">    <span class="function">String <span class="title">home</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello World!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Example<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h4><p>注意到有<code>public static void main(String[] args)</code>方法， 这是java程序执行入口，如果在IDE里面， 直接运行这个类就可以了。</p>
-<p>由于我们使用了<code>spring-boot-starter-parent</code>, 所以可以直接在命令行运行我们的程序:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn spring-boot:run</span><br></pre></td></tr></table></figure>
-
-<p>输出内容大致是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[INFO] Attaching agents: []</span><br><span class="line"></span><br><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___<span class="string">'_ __ _ _(_)_ __  __ _ \ \ \ \</span></span><br><span class="line"><span class="string">( ( )\___ | '</span>_ | <span class="string">'_| | '</span>_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  <span class="string">'  |____| .__|_| |_|_| |_\__, | / / / /</span></span><br><span class="line"><span class="string"> =========|_|==============|___/=/_/_/_/</span></span><br><span class="line"><span class="string"> :: Spring Boot ::        (v2.3.0.RELEASE)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2020-05-25 17:21:42.595  INFO 4957 --- [           main] Example                                  : Starting Example on huazhizuideMacBook-Pro.local with PID 4957 (/Users/huazhizui/code/java/spring-boot-demo2/target/classes started by huazhizui in /Users/huazhizui/code/java/spring-boot-demo2)</span></span><br><span class="line"><span class="string">2020-05-25 17:21:42.596  INFO 4957 --- [           main] Example                                  : No active profile set, falling back to default profiles: default</span></span><br><span class="line"><span class="string">2020-05-25 17:21:43.191  INFO 4957 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)</span></span><br><span class="line"><span class="string">2020-05-25 17:21:43.232  INFO 4957 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]</span></span><br><span class="line"><span class="string">2020-05-25 17:21:43.232  INFO 4957 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.35]</span></span><br><span class="line"><span class="string">2020-05-25 17:21:43.292  INFO 4957 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext</span></span><br><span class="line"><span class="string">2020-05-25 17:21:43.292  INFO 4957 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 666 ms</span></span><br><span class="line"><span class="string">2020-05-25 17:21:43.408  INFO 4957 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService '</span>applicationTaskExecutor<span class="string">'</span></span><br><span class="line"><span class="string">2020-05-25 17:21:43.529  INFO 4957 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '</span><span class="string">'</span></span><br><span class="line"><span class="string">2020-05-25 17:21:43.535  INFO 4957 --- [           main] Example                                  : Started Example in 1.354 seconds (JVM running for 1.72)</span></span><br></pre></td></tr></table></figure>
-
-<p>可以看到启动了一个tomcat， 服务端口是<code>8080</code> ， 非常方便， 不用自己安装tomcat， 配置一大堆东西, just one command, 这就是<code>spring-boot-starter-tomcat</code>的作用。 </p>
-<p>浏览器访问一下<code>http://localhost:8080/</code>， 返回</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
-
-<p>分分钟， 一个简单的web项目就完成。</p>
-<h4 id="项目打包成可执行jar"><a href="#项目打包成可执行jar" class="headerlink" title="项目打包成可执行jar"></a>项目打包成可执行jar</h4><p>项目依赖较多的情况下， 使用maven标准方法把项目打包成可执行jar， 问题一大堆， 被坑过的都懂。 以前使用<code>maven UberJar</code>插件， 经常一通配置可以解决。但spring boot 提供了更好的方案: <code>spring-boot-maven-plugin</code>。 pom文件添加如下内容:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 省略了其它配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 省略了其它配置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后运行<code>mvn package</code> , 整个项目和依赖就全部打到一个jar包里了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ mvn package</span><br><span class="line">...</span><br><span class="line">[INFO] --- spring-boot-maven-plugin:2.3.0.RELEASE:repackage (repackage) @ myproject ---</span><br><span class="line">[INFO] Replacing main artifact with repackaged archive</span><br><span class="line">...</span><br><span class="line">$ ll target</span><br><span class="line">...</span><br><span class="line">-rw-r--r--  1 huazhizui  staff    16M  5 25 18:23 myproject-0.0.1-SNAPSHOT.jar</span><br><span class="line">-rw-r--r--  1 huazhizui  staff   2.2K  5 25 18:23 myproject-0.0.1-SNAPSHOT.jar.original</span><br></pre></td></tr></table></figure>
-
-<p>查看<code>target</code>目录，这个<code>myproject-0.0.1-SNAPSHOT.jar</code>文件大概16M， 就是我们要的可执行jar包了， <code>myproject-0.0.1-SNAPSHOT.jar.original</code>是我们原来单纯的jar包，只有2.2K， 只包含我们自己写的代码。</p>
-<p>如果好奇这个巨大的16M jar包里空间都有些撒, 请使用:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jar tvf target/myproject-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这个包含一切的jar包， 执行姿势如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar target/myproject-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
-
-<p><strong>特别提示：</strong> <code>java -jar</code> 模式下，程序运行的<code>classpath</code>只有这个jar包，就算指定了<code>-classpath</code> 选项，也没选用， 会直接被忽略。 </p>
-<p>运行效果和<code>mvn spring-boot:run</code> 一致。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>从搭建开始到最终页面展示“Hello World！” ， 我们只写了10来行代码， 一个配置文件都没写过， 甚至连<code>web.xml</code>文件都没管过。这究竟是如何发生的？</p>
-<p>看一下<code>Example.java</code>， 注意到三个注解<code>@RestController</code>，<code>@EnableAutoConfiguration</code> ， <code>@RequestMapping</code>， 还有一个<code>main</code>方法， 这在普通的web项目里可以没有的。</p>
-<h5 id="RestController、-RequestMapping注解"><a href="#RestController、-RequestMapping注解" class="headerlink" title="@RestController、@RequestMapping注解"></a>@RestController、<code>@RequestMapping</code>注解</h5><p>这两注解， 是<code>SpringMvc</code>里的注解，<code>@RestController</code> 表明这个类是一个Controller可以用来处理http请求， <code>@RequestMapping</code>表明了这个为和方法能处理哪些请求地址。</p>
-<h5 id="EnableAutoConfiguration注解和自动配置"><a href="#EnableAutoConfiguration注解和自动配置" class="headerlink" title="@EnableAutoConfiguration注解和自动配置"></a><code>@EnableAutoConfiguration</code>注解和自动配置</h5><p>这个注解就厉害了， 这就是0配置的核心， 有个这个注解， spring boot 会根据我们依赖的jar包来推测出我们需要对spring做的配置。这样我们就不需要手动去写一大堆spring配置文件了。</p>
-<p>我们这个项目中，由于我们依赖了<code>spring-boot-starter-web</code>，这个starter 添加了<code>springMvc</code> 和<code>tomcat</code>依赖， 所以spring <strong>自动配置功能</strong>就会假设这是个web项目， 并做出相应的配置， 包括tomcat的配置。</p>
-<p>当然， <strong>自动配置功能</strong> 并不是只能跟starter一起使用， 就算不用starter， 通过自己手动添加依赖， 自动配置也能正常工作。</p>
-<h5 id="main-方法"><a href="#main-方法" class="headerlink" title="main 方法"></a>main 方法</h5><p>可以看出这是java标准的main方法， 是java程序的入口。但是我们都知道， 通常web项目是在web容器中运行， 所以并不需要main方法， 那这个main方法是干什么用的？</p>
-<p>回到<code>pom.xml</code>文件， 发现里面并没有正常web项目都会有的<code>&lt;packaging&gt;war&lt;/packaging&gt;</code> 标签， 这是标签是告诉maven我们的项目要打成war包。 既然这个项目没有， 那说明， 压根就不是在容器里运行的， 而是做为<strong>普通的java程序</strong>运行的。  我们程序运行起来也只干一件事， 调用<code>SpringApplication.run</code>， 告诉<code>SpringApplication</code>该干活了。</p>
-<p>为了验证这个猜想， 我们可以看看通过<code>mvn spring-boot:run</code>启动项目的实际命令， 先看一看有哪些java 进程：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ jps -mlv | grep -v <span class="string">"jps"</span></span><br><span class="line">1111 org.codehaus.plexus.classworlds.launcher.Launcher spring-boot:run -Dclassworlds.conf=/Users/huazhizui/application/apache-maven-3.6.0/bin/m2.conf -Dmaven.home=/Users/huazhizui/application/apache-maven-3.6.0 -Dlibrary.jansi.path=/Users/huazhizui/application/apache-maven-3.6.0/lib/jansi-native -Dmaven.multiModuleProjectDirectory=/Users/huazhizui/code/java/spring-boot-demo2</span><br><span class="line">1149 Example -Xverify:none -XX:TieredStopAtLevel=1</span><br></pre></td></tr></table></figure>
-
-<p>可以看到两个进程<code>1111</code>  和 <code>1149</code>， 可以看到<code>1111</code>是maven进程， 它的参数是<code>spring-boot:run</code>。 <code>1149</code> 就是运行我们项目的进程，查看它的完整命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ps -ef | grep <span class="string">"1149"</span> | grep -v <span class="string">"grep"</span></span><br><span class="line">  501  1149  1111   0  4:53下午 ttys001    0:03.06 /Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/jre/bin/java -Xverify:none -XX:TieredStopAtLevel=1 -cp /Users/huazhizui/code/java/spring-boot-demo2/target/classes:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter-web/2.3.0.RELEASE/spring-boot-starter-web-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter/2.3.0.RELEASE/spring-boot-starter-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot/2.3.0.RELEASE/spring-boot-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/2.3.0.RELEASE/spring-boot-autoconfigure-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter-logging/2.3.0.RELEASE/spring-boot-starter-logging-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar:/Users/huazhizui/.m2/repository/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar:/Users/huazhizui/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/Users/huazhizui/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.13.2/log4j-to-slf4j-2.13.2.jar:/Users/huazhizui/.m2/repository/org/apache/logging/log4j/log4j-api/2.13.2/log4j-api-2.13.2.jar:/Users/huazhizui/.m2/repository/org/slf4j/jul-to-slf4j/1.7.30/jul-to-slf4j-1.7.30.jar:/Users/huazhizui/.m2/repository/jakarta/annotation/jakarta.annotation-api/1.3.5/jakarta.annotation-api-1.3.5.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-core/5.2.6.RELEASE/spring-core-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-jcl/5.2.6.RELEASE/spring-jcl-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/yaml/snakeyaml/1.26/snakeyaml-1.26.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter-json/2.3.0.RELEASE/spring-boot-starter-json-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.11.0/jackson-databind-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.11.0/jackson-annotations-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.11.0/jackson-core-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.11.0/jackson-datatype-jdk8-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.11.0/jackson-datatype-jsr310-2.11.0.jar:/Users/huazhizui/.m2/repository/com/fasterxml/jackson/module/jackson-module-parameter-names/2.11.0/jackson-module-parameter-names-2.11.0.jar:/Users/huazhizui/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/2.3.0.RELEASE/spring-boot-starter-tomcat-2.3.0.RELEASE.jar:/Users/huazhizui/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/9.0.35/tomcat-embed-core-9.0.35.jar:/Users/huazhizui/.m2/repository/org/glassfish/jakarta.el/3.0.3/jakarta.el-3.0.3.jar:/Users/huazhizui/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/9.0.35/tomcat-embed-websocket-9.0.35.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-web/5.2.6.RELEASE/spring-web-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-beans/5.2.6.RELEASE/spring-beans-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-webmvc/5.2.6.RELEASE/spring-webmvc-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-aop/5.2.6.RELEASE/spring-aop-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-context/5.2.6.RELEASE/spring-context-5.2.6.RELEASE.jar:/Users/huazhizui/.m2/repository/org/springframework/spring-expression/5.2.6.RELEASE/spring-expression-5.2.6.RELEASE.jar Example</span><br></pre></td></tr></table></figure>
-
-<p>可以看到<code>1149</code> 是 <code>1111</code> 的子进程， 说明我们这个项目是通过maven启动的。整个命令非常长， 但大部分是设置classpath， 简化看看，就是这样一条命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Xverify:none -XX:TieredStopAtLevel=1 -cp ... Example</span><br></pre></td></tr></table></figure>
-
-<p>得证，springboot 的运行方式，就是一个普通java 程序运行的方式</p>
-<p>当然这种通过maven插件启动的方式， 只能在开发时用， 上线的话应该打成<strong>可运行jar包</strong>来运行</p>
-<p>仔细观察下 -cp， 其实就是我们项目的<code>/target/classes</code> 目录和所有依赖jar 的组合， 很正常，很标准</p>
-<p>既然我们项目只是个普通java程序， 那为什么能提供web服务？ 这就是<code>SpringApplication.run</code> 干的事情了，我们main方法调用<code>SpringApplication.run</code>， 它先初始化好spring环境，根据依赖知道是个web项目而且引用了tomcat， 所以配置好tomcat， 然后启动tomcat，提供web服务功能。 </p>
-<p>至此，算是初识了spring boot</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/spring/" class="article-tag-list-link color2">spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/spring/spring-boot/" class="article-tag-list-link color2">spring-boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/25/spring/spring-boot/build-spring-app/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-cassandra/operation/add-node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/25/cassandra/operation/add-node/">cassandra集群添加节点</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/25/cassandra/operation/add-node/" class="archive-article-date">
-        <time datetime="2020-05-25T01:54:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <ol>
-<li><p>配置<code>cassandra.ymal</code></p>
-<p>设置<code>cluster_name</code>、<code>seed_provider</code>跟需要加入的集群相同</p>
-</li>
-<li><p>启动cassandra</p>
-<p><strong>注意：</strong> 如果节点是原来就存在数据的节点（例如：用<code>decommission</code>，<code>removenode</code> 从集群移除的节点）， 则需要删除原来的所以数据和commitLog，再启动</p>
-</li>
-</ol>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">cassandra</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/cassandra/" class="article-tag-list-link color5">cassandra</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/cassandra/operation/" class="article-tag-list-link color5">operation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/25/cassandra/operation/add-node/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-cassandra-remove-node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/22/cassandra-remove-node/">cassandra 移除节点</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/22/cassandra-remove-node/" class="archive-article-date">
-        <time datetime="2020-05-22T02:54:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>本文介绍从cassandara 集群删除节点步骤</p>
-<h4 id="查看节点状态"><a href="#查看节点状态" class="headerlink" title="查看节点状态"></a>查看节点状态</h4><p>移除节点前， 首先需要查看节点状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodetool status</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="根据节点状态移除节点"><a href="#根据节点状态移除节点" class="headerlink" title="根据节点状态移除节点"></a>根据节点状态移除节点</h4><ul>
-<li><p>如果节点<strong>在线</strong> ， 则使用<code>nodetool decommission</code> 命令使节点退役, <code>decommission</code> 过程中可以使用<code>nodetool &lt;options&gt; netstats -H</code> 查看进度。 <code>decommission</code> 会重新分配vnode， 并把本节点的数据发送到其它节点。</p>
-<p> <strong>注意：</strong> <code>decommission</code>  不会关闭节点， 所以需要在<code>decommission</code> 完成后手动关闭</p>
-</li>
-<li><p>如果节点已经<strong>离线</strong>， 则使用<code>nodetool removenode {hostId}</code> 直接删除节点。 <code>removenode</code>操作也会重新分配vnode，数据是从其它节点复制</p>
-<p>如果<code>removenode</code> 操作失败，需要使用<code>nodetool [options] assassinate &lt;ip_address&gt;</code> 强制杀死节点</p>
-</li>
-</ul>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">cassandra</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/cassandra/" class="article-tag-list-link color5">cassandra</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/cassandra/operation/" class="article-tag-list-link color5">operation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/22/cassandra-remove-node/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-utf8mb4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/06/mysql-utf8mb4/">java中使用mysql utf8mb4 字符集</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/06/mysql-utf8mb4/" class="archive-article-date">
-        <time datetime="2020-05-06T03:21:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="emoji表情的存储问题"><a href="#emoji表情的存储问题" class="headerlink" title="emoji表情的存储问题"></a>emoji表情的存储问题</h3><p>随着emoji表情使用越来越广泛，在mysql数据库在存储emoji表情的需求就越来越常见。 </p>
-<p>mysql <code>utf8</code> 字符集只能存储三个字节，实际上并不是真正的UTF-8，不能存储emoji表情。</p>
-<p>所以如果mysql数据库和表的字符集都使用的utf8，在存emoji表情的时候就会出错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.sql.SQLException: Incorrect string value: &#39;\xF0\x9F\x8D\x93\xE4\xBA...&#39; for column &#39;title&#39; at row 1</span><br><span class="line">	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3933)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3869)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2675)</span><br><span class="line">	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2465)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1912)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2133)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2067)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5175)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2052)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>为了支持emoji，mysql推出了<code>utf8mb4</code>字符集 , 那么如何在现有字符集为utf8的数据库上使用utf8mb4呢？</p>
-<p>首先，当然是把需要存emoji的数据库、表、字段的字符集都修改成为<code>utf8mb4</code>， 由于<code>utf8mb4</code>是兼容<code>utf8</code>的，所以修改并不会影响数据。</p>
-<p>然后，然后设置客户端字符集</p>
-<p>Java中一般使用<code>Connector/J</code> 来连接<code>mysql</code> ，看一下官网原文描述:</p>
-<blockquote>
-<p> For Connector/J 5.1.46 and earlier: In order to use the utf8mb4 character set for the connection, the server MUST be configured with character_set_server=utf8mb4; if that is not the case, when UTF-8 is used for characterEncoding in the connection string, it will map to the MySQL character set name utf8, which is an alias for utf8mb3.</p>
-<p>For Connector/J 5.1.47 and later:</p>
-<p>When UTF-8 is used for characterEncoding in the connection string, it maps to the MySQL character set name utf8mb4.</p>
-<p>If the connection option connectionCollation is also set alongside characterEncoding and is incompatible with it, characterEncoding will be overridden with the encoding corresponding to connectionCollation.</p>
-<p>Because there is no Java-style character set name for utfmb3 that you can use with the connection option charaterEncoding, the only way to use utf8mb3 as your connection character set is to use a utf8mb3 collation (for example, utf8_general_ci) for the connection option connectionCollation, which forces a utf8mb3 character set to be used, as explained in the last bullet.    </p>
-</blockquote>
-<p>可以看出：</p>
-<ul>
-<li>如果使用的是<code>Connector/J 5.1.46</code> 以及之前的版本，必须修改server 端的字符集：<code>character_set_server=utf8mb4</code>，这需要重启mysql服务，对于这使用云rds的同学来说更加困难</li>
-<li>更好的办法是升级 <code>Connector/J</code> 到 <code>5.1.47</code> 之后的版本，这样当我们连接参数指定为<code>characterEncoding=UTF-8</code> 的时候， <code>character_set_client</code> 和 <code>character_set_connection</code> 就会使用<code>utf8mb4</code>了。 当然还需要添加<code>characterSetResults=UTF-8</code>参数， 将<code>character_set_results</code>也设置为<code>utf8mb4</code> 。</li>
-</ul>
-<p>通过<code>Connector/J</code>客户端设置<code>utf8mb4</code>字符集的 java 示例代码如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDevWithJDBC</span><span class="params">()</span> <span class="keyword">throws</span> SQLException, ClassNotFoundException </span>&#123;</span><br><span class="line">        Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">        Connection connection = DriverManager.getConnection(<span class="string">"jdbc:mysql://localhost:3306/jingdong_db?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"</span></span><br><span class="line">                + <span class="string">"&amp;user=***&amp;password=***"</span>);</span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line">        viewSessionCharacterSet(statement);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">viewSessionCharacterSet</span><span class="params">(Statement statement)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        ResultSet resultSet = statement.executeQuery(<span class="string">"show variables like '%character%';"</span>);</span><br><span class="line">        <span class="keyword">while</span> (resultSet.next())&#123;</span><br><span class="line">            System.out.println(resultSet.getString(<span class="number">1</span>) + <span class="string">":"</span> +resultSet.getString(<span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="关于乱码问题"><a href="#关于乱码问题" class="headerlink" title="关于乱码问题"></a>关于乱码问题</h3><p>查看字符集<br>首先我们得登录数据库实例，查看当前数据库的字符集设置。</p>
-<p>使用如下命令：<br><code>show variables like &#39;%character%&#39;</code><br>可以看到字符集的具体情况如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">variable_name  value</span><br><span class="line">character_set_client   utf8</span><br><span class="line">character_set_connection   utf8</span><br><span class="line">character_set_database utf8</span><br><span class="line">character_set_filesystem   binary</span><br><span class="line">character_set_results  utf8</span><br><span class="line">character_set_server   utf8</span><br><span class="line">character_set_system   utf8</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="字符集参数说明"><a href="#字符集参数说明" class="headerlink" title="字符集参数说明"></a>字符集参数说明</h4><ul>
-<li>character_set_client： 此参数是客户端可以设置的，具体设置方式见下文详解。</li>
-<li>character_set_connection： 此参数是客户端可以设置的，具体设置方式见下文详解。</li>
-<li>character_set_database： 此参数值与你创建库的时候指定的字符集有关，关于创建库的时候如何指定字符集，可以参考创建库</li>
-<li>character_set_results：此参数是客户端可以设置的，具体设置方式见下文详解。</li>
-<li>character_set_server： 此参数是服务端的设置，此参数值可以通过参数组进行修改，可以参考 修改参数；   <strong>注意：</strong>此参数修改完后，记得重启实例才能确保 <code>character_set_database</code> 默认值与 <code>character_set_server</code> 保持同步。</li>
-<li>character_set_system： 此参数可以<strong>不用关心</strong></li>
-<li>character_set_filesystem： 此参数可以<strong>不用关心</strong></li>
-</ul>
-<h4 id="如何避免乱码"><a href="#如何避免乱码" class="headerlink" title="如何避免乱码"></a>如何避免乱码</h4><p>要避免在使用数据库过程中的乱码问题，需要确保<code>character_set_client</code>、<code>character_set_connection</code> 、<code>character_set_results</code>、<code>character_set_database</code>这四个参数值是保持一致的，如果不一致就会有可能出现乱码。</p>
-<h4 id="Java设置客户端设置字符集"><a href="#Java设置客户端设置字符集" class="headerlink" title="Java设置客户端设置字符集"></a>Java设置客户端设置字符集</h4><ul>
-<li><code>character_set_client</code>、<code>character_set_connection</code>  通过<code>characterEncoding</code> 参数设置</li>
-<li><code>character_set_results</code> 通过<code>characterSetResults</code> 参数设置</li>
-</ul>
-<p>示例： <code>jdbc:mysql://localhost:3306/mydb?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8</code></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/06/mysql-utf8mb4/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java-args" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/05/java-args/">java-args</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/05/java-args/" class="archive-article-date">
-        <time datetime="2020-05-05T03:33:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="java程序调用"><a href="#java程序调用" class="headerlink" title="java程序调用"></a>java程序调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">用法:    </span><br><span class="line">   java [-options] class [args...]</span><br><span class="line">           (执行类)   </span><br><span class="line">   或  java [-options] -jar jarfile [args...]</span><br><span class="line">           (执行 jar 文件)   </span><br><span class="line"> 其中options包括:  </span><br><span class="line">    -d32     使用 32 位数据模型 (如果可用)   </span><br><span class="line">    -d64     使用 64 位数据模型 (如果可用)   </span><br><span class="line">    -server      选择 server VM      </span><br><span class="line">              默认 VM 是 server,      </span><br><span class="line">             因为您是在服务器类计算机上运行。</span><br><span class="line">   ...   </span><br><span class="line">    &quot;-D&lt;名称&gt;&#x3D;&lt;值&gt;  设置系统属性&quot;   </span><br><span class="line">   ...</span><br></pre></td></tr></table></figure>
-
-<p>这里重点关注jvm参数, 也就是-D这个, 其他选项就省略了.<br>-D开头的选项会被作为系统属性值,可以使用<br><code>System.getProperty(&quot;name&quot;)</code> 获取.  </p>
-<p>仔细观察可以发现: </p>
-<ol>
-<li><p>所有的 option都是以<code>-</code>开头.  </p>
-</li>
-<li><p>第一个没有短横线的参数,会被认为是<code>class</code></p>
-</li>
-<li><p><code>class</code> 后边的所有参数会被作为 <code>main</code> 函数的 <code>args[]</code></p>
-</li>
-<li><p>综上: 系统属性通过<code>-Dkey=value</code>来设置, 出现在<code>class</code>的前面,  而程序运行参数出现在class的后面, 解析方式和命令行参数一致, 以空格分割为<code>String[]</code> ,传给<code>main</code> 方法.</p>
-</li>
-<li><p>SpringBoot 的<code>args</code> 参数: <code>[args...]</code> 中以<code>--key=value</code> 形式存在的参数, 会被<code>SpringBoot</code>搜集处理, 放在<code>properites</code>中,在程序中可以直接使用<code>${&quot;key&quot;}</code> 的方式引用.</p>
-</li>
-</ol>
-<h4 id="jvm非标准选项-X"><a href="#jvm非标准选项-X" class="headerlink" title="jvm非标准选项 -X"></a>jvm非标准选项 -X</h4><p>以下是java 8 的非常标准选项：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">    -Xmixed           混合模式执行 (默认)</span><br><span class="line">    -Xint             仅解释模式执行</span><br><span class="line">    -Xbootclasspath:&lt;用 : 分隔的目录和 zip&#x2F;jar 文件&gt;</span><br><span class="line">                      设置搜索路径以引导类和资源</span><br><span class="line">    -Xbootclasspath&#x2F;a:&lt;用 : 分隔的目录和 zip&#x2F;jar 文件&gt;</span><br><span class="line">                      附加在引导类路径末尾</span><br><span class="line">    -Xbootclasspath&#x2F;p:&lt;用 : 分隔的目录和 zip&#x2F;jar 文件&gt;</span><br><span class="line">                      置于引导类路径之前</span><br><span class="line">    -Xdiag            显示附加诊断消息</span><br><span class="line">    -Xnoclassgc       禁用类垃圾收集</span><br><span class="line">    -Xincgc           启用增量垃圾收集</span><br><span class="line">    -Xloggc:&lt;file&gt;    将 GC 状态记录在文件中 (带时间戳)</span><br><span class="line">    -Xbatch           禁用后台编译</span><br><span class="line">    -Xms&lt;size&gt;        设置初始 Java 堆大小</span><br><span class="line">    -Xmx&lt;size&gt;        设置最大 Java 堆大小</span><br><span class="line">    -Xss&lt;size&gt;        设置 Java 线程堆栈大小</span><br><span class="line">    -Xprof            输出 cpu 配置文件数据</span><br><span class="line">    -Xfuture          启用最严格的检查, 预期将来的默认值</span><br><span class="line">    -Xrs              减少 Java&#x2F;VM 对操作系统信号的使用 (请参阅文档)</span><br><span class="line">    -Xcheck:jni       对 JNI 函数执行其他检查</span><br><span class="line">    -Xshare:off       不尝试使用共享类数据</span><br><span class="line">    -Xshare:auto      在可能的情况下使用共享类数据 (默认)</span><br><span class="line">    -Xshare:on        要求使用共享类数据, 否则将失败。</span><br><span class="line">    -XshowSettings    显示所有设置并继续</span><br><span class="line">    -XshowSettings:all</span><br><span class="line">                      显示所有设置并继续</span><br><span class="line">    -XshowSettings:vm 显示所有与 vm 相关的设置并继续</span><br><span class="line">    -XshowSettings:properties</span><br><span class="line">                      显示所有属性设置并继续</span><br><span class="line">    -XshowSettings:locale</span><br><span class="line">                      显示所有与区域设置相关的设置并继续</span><br><span class="line"></span><br><span class="line">-X 选项是非标准选项, 如有更改, 恕不另行通知。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">以下选项为 Mac OS X 特定的选项:</span><br><span class="line">    -XstartOnFirstThread</span><br><span class="line">                      在第一个 (AppKit) 线程上运行 main() 方法</span><br><span class="line">    -Xdock:name&#x3D;&lt;应用程序名称&gt;&quot;</span><br><span class="line">                      覆盖停靠栏中显示的默认应用程序名称</span><br><span class="line">    -Xdock:icon&#x3D;&lt;图标文件的路径&gt;</span><br><span class="line">                      覆盖停靠栏中显示的默认图标</span><br></pre></td></tr></table></figure>
-<p>其中比较常用的是 <code>-Xms</code> <code>-Xmx</code> 用来设置jvm堆内存大小。 </p>
-<h4 id="java高级运行时选项-Advanced-Runtime-Options"><a href="#java高级运行时选项-Advanced-Runtime-Options" class="headerlink" title="java高级运行时选项, Advanced Runtime Options"></a>java高级运行时选项, Advanced Runtime Options</h4><p>These options control the runtime behavior of the Java HotSpot VM.<br>用来控制jvm运行时的行为。<br>例如8以前的版本常用 <code>-XX:PermSize=256m</code> 来控制持久带的大小。<br>高级选项可以通过 <code>man java</code> 来查看java命令的详情文档， 里面有完整的描述。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/05/java-args/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -1688,8 +481,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
