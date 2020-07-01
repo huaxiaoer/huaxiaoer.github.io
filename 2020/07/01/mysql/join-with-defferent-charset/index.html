@@ -6,20 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://huaxiaoer.github.io">
-  <title>Archives: 2020/6 | Kindrage 的blog</title>
+  <title>join用不到索引问题分析 | Kindrage 的blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="随手记 - 我的程序员之路">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kindrage 的blog">
-<meta property="og:url" content="https://huaxiaoer.github.io/archives/2020/06/index.html">
+  <meta name="description" content="问题今天开发中遇到了一个奇怪的问题， 三个表做join操作的时候，关联字段和查询条件都是有索引的，但是查询花了15秒。 这种时候，一般也不慌，查下执行计划看看哪里出了问题 12345EXPLAIN select count(*)    from pdd_order_refund r    join pdd_order o on o.id &#x3D; r.order_id    left join pdd_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="join用不到索引问题分析">
+<meta property="og:url" content="https://huaxiaoer.github.io/2020/07/01/mysql/join-with-defferent-charset/index.html">
 <meta property="og:site_name" content="Kindrage 的blog">
-<meta property="og:description" content="随手记 - 我的程序员之路">
+<meta property="og:description" content="问题今天开发中遇到了一个奇怪的问题， 三个表做join操作的时候，关联字段和查询条件都是有索引的，但是查询花了15秒。 这种时候，一般也不慌，查下执行计划看看哪里出了问题 12345EXPLAIN select count(*)    from pdd_order_refund r    join pdd_order o on o.id &#x3D; r.order_id    left join pdd_">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huaxiaoer.github.io/assets/img/sql-explain.png">
+<meta property="og:image" content="https://huaxiaoer.github.io/assets/img/pdd-order-outer-info-index.png">
+<meta property="og:image" content="https://huaxiaoer.github.io/assets/img/emoji/%E7%86%8A%E7%8C%AB%E7%A0%B8%E6%A1%8C%E5%AD%90.jpg">
+<meta property="og:image" content="https://huaxiaoer.github.io/assets/img/sql-explain-new.png">
+<meta property="article:published_time" content="2020-07-01T03:55:55.000Z">
+<meta property="article:modified_time" content="2020-07-01T07:06:37.914Z">
 <meta property="article:author" content="Kindrage">
-<meta property="article:tag" content="java 程序员 coder cassandra linux spring">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huaxiaoer.github.io/assets/img/sql-explain.png">
   
     <link rel="alternative" href="/atom.xml" title="Kindrage 的blog" type="application/atom+xml">
   
@@ -208,76 +215,262 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-mysql/join-with-defferent-charset" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/06/17/java/ipToLong/" class="archive-article-date">
-        <time datetime="2020-06-17T09:15:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/06/17/java/ipToLong/">ip、ip:port和long的相互转换</a>
-	
+    <h1 class="article-title" itemprop="name">
+      join用不到索引问题分析
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/07/01/mysql/join-with-defferent-charset/" class="archive-article-date">
+        <time datetime="2020-07-01T03:55:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">801字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>今天开发中遇到了一个奇怪的问题， 三个表做<code>join</code>操作的时候，关联字段和查询条件都是有索引的，但是查询花了15秒。</p>
+<p>这种时候，一般也不慌，查下执行计划看看哪里出了问题</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPLAIN</span> <span class="keyword">select</span> <span class="keyword">count</span>(*)</span><br><span class="line">    <span class="keyword">from</span> pdd_order_refund r</span><br><span class="line">    <span class="keyword">join</span> pdd_order o <span class="keyword">on</span> o.id = r.order_id</span><br><span class="line">    <span class="keyword">left</span> <span class="keyword">join</span> pdd_order_outer_info i <span class="keyword">on</span> i.order_id = o.id </span><br><span class="line">    <span class="keyword">where</span> r.shop_id <span class="keyword">in</span> (<span class="number">628990065</span>,<span class="number">618972237</span>);</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/assets/img/sql-explain.png" alt="explain"></p>
+<p>可以看到<code>pdd_order</code>表使用主键关联只扫描一行数据， 是正常的，而<code>pdd_order_outer_info</code> 表虽然使用到了<code>IDX_DDD</code>索引，但仍然扫描了全表(87422行)数据， 肯定是有问题的。</p>
+<p>查看<code>pdd_order_outer_info</code>表的索引</p>
+<p><img src="/assets/img/pdd-order-outer-info-index.png" alt="pdd-order-outer-info-index"></p>
+<p>可以看到<code>IDX_DDD</code>索引基数和主键基数接近，索引效果应该非常好。以此字段关联扫描的行数大多数情况应该是1，最多也就个位数才对。</p>
+<p>为什么明明使用了索引，还要扫全表？？？</p>
+<p><img src="/assets/img/emoji/%E7%86%8A%E7%8C%AB%E7%A0%B8%E6%A1%8C%E5%AD%90.jpg" alt=""></p>
+<h3 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h3><p>几番查找终于在<a href="https://www.jianshu.com/p/d85cc849b28e" target="_blank" rel="noopener">这篇文章</a>中找到了线索。</p>
+<p>通过<code>explain EXTENDED</code> 和<code>show warnings</code>语句查看详细的执行计划</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPLAIN</span> <span class="keyword">EXTENDED</span> <span class="keyword">select</span> <span class="keyword">count</span>(*)</span><br><span class="line">    <span class="keyword">from</span> pdd_order_refund r</span><br><span class="line">    <span class="keyword">join</span> pdd_order o <span class="keyword">on</span> o.id = r.order_id</span><br><span class="line">    <span class="keyword">left</span> <span class="keyword">join</span> pdd_order_outer_info i <span class="keyword">on</span> i.order_id = o.id </span><br><span class="line">    <span class="keyword">where</span> r.shop_id <span class="keyword">in</span> (<span class="number">628990065</span>,<span class="number">618972237</span>);</span><br><span class="line">    </span><br><span class="line"><span class="keyword">show</span> <span class="keyword">warnings</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>show warnings</code>给出了如下信息:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* select#1 *&#x2F; select count(0) AS &#96;count(*)&#96; from &#96;pdd_order_db&#96;.&#96;pdd_order_refund&#96; &#96;r&#96; join &#96;pdd_order_db&#96;.&#96;pdd_order&#96; &#96;o&#96; left join &#96;pdd_order_db&#96;.&#96;pdd_order_outer_info&#96; &#96;i&#96; on((convert(&#96;pdd_order_db&#96;.&#96;i&#96;.&#96;order_id&#96; using utf8mb4) &#x3D; &#96;pdd_order_db&#96;.&#96;r&#96;.&#96;order_id&#96;)) where ((&#96;pdd_order_db&#96;.&#96;o&#96;.&#96;id&#96; &#x3D; &#96;pdd_order_db&#96;.&#96;r&#96;.&#96;order_id&#96;) and (&#96;pdd_order_db&#96;.&#96;r&#96;.&#96;shop_id&#96; in (628990065,618972237)))</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<code>pdd_order_outer_info</code> 的关联条件实际上变成了如下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">on((convert(&#96;pdd_order_db&#96;.&#96;i&#96;.&#96;order_id&#96; using utf8mb4) &#x3D; &#96;pdd_order_db&#96;.&#96;r&#96;.&#96;order_id&#96;))</span><br></pre></td></tr></table></figure>
+
+<p>终于找到原因：索引字段<code>order_id</code>经过计算才进行比较，导致索引失效。</p>
+<p>为什么<code>pdd_order_outer_info</code>表的<code>order_id</code>字段要转字符集再比较呢？ 所以怀疑是两张表的order_id字段字符集不一致导致的，于是查验<code>pdd_order</code>表和<code>pdd_order_outer_info</code>表的建表语句(无关部分已经省略)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;pdd_order&#96; (</span><br><span class="line">  &#96;id&#96; varchar(100) NOT NULL,</span><br><span class="line">  &#96;shop_id&#96; bigint(20) NOT NULL,</span><br><span class="line">  &#96;created_time&#96; datetime NOT NULL,</span><br><span class="line">  PRIMARY KEY (&#96;id&#96;)</span><br><span class="line">) ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8mb4</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;pdd_order_outer_info&#96; (</span><br><span class="line">  &#96;id&#96; bigint(20) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  &#96;shop_id&#96; bigint(20) NOT NULL,</span><br><span class="line">  &#96;order_id&#96; varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,</span><br><span class="line">  PRIMARY KEY (&#96;id&#96;) USING BTREE,</span><br><span class="line">  KEY &#96;INDEX_SHOP_ID&#96; (&#96;shop_id&#96;,&#96;created&#96;,&#96;outer_user_id&#96;) USING BTREE,</span><br><span class="line">  KEY &#96;idx_order&#96; (&#96;order_id&#96;)</span><br><span class="line">) ENGINE&#x3D;InnoDB AUTO_INCREMENT&#x3D;35 DEFAULT CHARSET&#x3D;utf8mb4</span><br></pre></td></tr></table></figure>
+
+<p>果然发现问题，虽然两张表都是<code>utf8mb4</code> ， 但是  <code>pdd_order_outer_info</code> 表的<code>order_id</code> 被显示的设置成了utf8。</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>修改一下order_id的字符集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;pdd_order_db&#96;.&#96;pdd_order_outer_info&#96; </span><br><span class="line">MODIFY COLUMN &#96;order_id&#96; varchar(255) CHARACTER SET utf8mb4 NOT NULL AFTER &#96;shop_id&#96;;</span><br></pre></td></tr></table></figure>
+
+<p>验证一下：</p>
+<p><img src="/assets/img/sql-explain-new.png" alt="explain"></p>
+<p>扫描行数已经变成了1，再执行一下最开始的sql，耗时只有25ms，成功解决问题。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p> 两张表关联的时候，如果关联条件字段的字符集不一致，将不能正常使用索引，导致关联的时候扫描全表，引起性能问题</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Kindrage
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://huaxiaoer.github.io/2020/07/01/mysql/join-with-defferent-charset/" title="join用不到索引问题分析" target="_blank">https://huaxiaoer.github.io/2020/07/01/mysql/join-with-defferent-charset/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java/" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/mysql/" class="article-tag-list-link color1">mysql</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://huaxiaoer.github.io/2020/07/01/mysql/join-with-defferent-charset/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/17/java/ipToLong/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ip、ip:port和long的相互转换</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排查过程"><span class="toc-number">2.</span> <span class="toc-text">排查过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-number">3.</span> <span class="toc-text">解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结论"><span class="toc-number">4.</span> <span class="toc-text">结论</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -318,8 +511,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

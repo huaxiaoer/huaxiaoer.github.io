@@ -215,6 +215,138 @@
             
 
   
+    <article id="post-mysql/join-with-defferent-charset" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/07/01/mysql/join-with-defferent-charset/">join用不到索引问题分析</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/07/01/mysql/join-with-defferent-charset/" class="archive-article-date">
+        <time datetime="2020-07-01T03:55:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>今天开发中遇到了一个奇怪的问题， 三个表做<code>join</code>操作的时候，关联字段和查询条件都是有索引的，但是查询花了15秒。</p>
+<p>这种时候，一般也不慌，查下执行计划看看哪里出了问题</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPLAIN</span> <span class="keyword">select</span> <span class="keyword">count</span>(*)</span><br><span class="line">    <span class="keyword">from</span> pdd_order_refund r</span><br><span class="line">    <span class="keyword">join</span> pdd_order o <span class="keyword">on</span> o.id = r.order_id</span><br><span class="line">    <span class="keyword">left</span> <span class="keyword">join</span> pdd_order_outer_info i <span class="keyword">on</span> i.order_id = o.id </span><br><span class="line">    <span class="keyword">where</span> r.shop_id <span class="keyword">in</span> (<span class="number">628990065</span>,<span class="number">618972237</span>);</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/assets/img/sql-explain.png" alt="explain"></p>
+<p>可以看到<code>pdd_order</code>表使用主键关联只扫描一行数据， 是正常的，而<code>pdd_order_outer_info</code> 表虽然使用到了<code>IDX_DDD</code>索引，但仍然扫描了全表(87422行)数据， 肯定是有问题的。</p>
+<p>查看<code>pdd_order_outer_info</code>表的索引</p>
+<p><img src="/assets/img/pdd-order-outer-info-index.png" alt="pdd-order-outer-info-index"></p>
+<p>可以看到<code>IDX_DDD</code>索引基数和主键基数接近，索引效果应该非常好。以此字段关联扫描的行数大多数情况应该是1，最多也就个位数才对。</p>
+<p>为什么明明使用了索引，还要扫全表？？？</p>
+<p><img src="/assets/img/emoji/%E7%86%8A%E7%8C%AB%E7%A0%B8%E6%A1%8C%E5%AD%90.jpg" alt=""></p>
+<h3 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h3><p>几番查找终于在<a href="https://www.jianshu.com/p/d85cc849b28e" target="_blank" rel="noopener">这篇文章</a>中找到了线索。</p>
+<p>通过<code>explain EXTENDED</code> 和<code>show warnings</code>语句查看详细的执行计划</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPLAIN</span> <span class="keyword">EXTENDED</span> <span class="keyword">select</span> <span class="keyword">count</span>(*)</span><br><span class="line">    <span class="keyword">from</span> pdd_order_refund r</span><br><span class="line">    <span class="keyword">join</span> pdd_order o <span class="keyword">on</span> o.id = r.order_id</span><br><span class="line">    <span class="keyword">left</span> <span class="keyword">join</span> pdd_order_outer_info i <span class="keyword">on</span> i.order_id = o.id </span><br><span class="line">    <span class="keyword">where</span> r.shop_id <span class="keyword">in</span> (<span class="number">628990065</span>,<span class="number">618972237</span>);</span><br><span class="line">    </span><br><span class="line"><span class="keyword">show</span> <span class="keyword">warnings</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>show warnings</code>给出了如下信息:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* select#1 *&#x2F; select count(0) AS &#96;count(*)&#96; from &#96;pdd_order_db&#96;.&#96;pdd_order_refund&#96; &#96;r&#96; join &#96;pdd_order_db&#96;.&#96;pdd_order&#96; &#96;o&#96; left join &#96;pdd_order_db&#96;.&#96;pdd_order_outer_info&#96; &#96;i&#96; on((convert(&#96;pdd_order_db&#96;.&#96;i&#96;.&#96;order_id&#96; using utf8mb4) &#x3D; &#96;pdd_order_db&#96;.&#96;r&#96;.&#96;order_id&#96;)) where ((&#96;pdd_order_db&#96;.&#96;o&#96;.&#96;id&#96; &#x3D; &#96;pdd_order_db&#96;.&#96;r&#96;.&#96;order_id&#96;) and (&#96;pdd_order_db&#96;.&#96;r&#96;.&#96;shop_id&#96; in (628990065,618972237)))</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<code>pdd_order_outer_info</code> 的关联条件实际上变成了如下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">on((convert(&#96;pdd_order_db&#96;.&#96;i&#96;.&#96;order_id&#96; using utf8mb4) &#x3D; &#96;pdd_order_db&#96;.&#96;r&#96;.&#96;order_id&#96;))</span><br></pre></td></tr></table></figure>
+
+<p>终于找到原因：索引字段<code>order_id</code>经过计算才进行比较，导致索引失效。</p>
+<p>为什么<code>pdd_order_outer_info</code>表的<code>order_id</code>字段要转字符集再比较呢？ 所以怀疑是两张表的order_id字段字符集不一致导致的，于是查验<code>pdd_order</code>表和<code>pdd_order_outer_info</code>表的建表语句(无关部分已经省略)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;pdd_order&#96; (</span><br><span class="line">  &#96;id&#96; varchar(100) NOT NULL,</span><br><span class="line">  &#96;shop_id&#96; bigint(20) NOT NULL,</span><br><span class="line">  &#96;created_time&#96; datetime NOT NULL,</span><br><span class="line">  PRIMARY KEY (&#96;id&#96;)</span><br><span class="line">) ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8mb4</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;pdd_order_outer_info&#96; (</span><br><span class="line">  &#96;id&#96; bigint(20) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  &#96;shop_id&#96; bigint(20) NOT NULL,</span><br><span class="line">  &#96;order_id&#96; varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,</span><br><span class="line">  PRIMARY KEY (&#96;id&#96;) USING BTREE,</span><br><span class="line">  KEY &#96;INDEX_SHOP_ID&#96; (&#96;shop_id&#96;,&#96;created&#96;,&#96;outer_user_id&#96;) USING BTREE,</span><br><span class="line">  KEY &#96;idx_order&#96; (&#96;order_id&#96;)</span><br><span class="line">) ENGINE&#x3D;InnoDB AUTO_INCREMENT&#x3D;35 DEFAULT CHARSET&#x3D;utf8mb4</span><br></pre></td></tr></table></figure>
+
+<p>果然发现问题，虽然两张表都是<code>utf8mb4</code> ， 但是  <code>pdd_order_outer_info</code> 表的<code>order_id</code> 被显示的设置成了utf8。</p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>修改一下order_id的字符集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;pdd_order_db&#96;.&#96;pdd_order_outer_info&#96; </span><br><span class="line">MODIFY COLUMN &#96;order_id&#96; varchar(255) CHARACTER SET utf8mb4 NOT NULL AFTER &#96;shop_id&#96;;</span><br></pre></td></tr></table></figure>
+
+<p>验证一下：</p>
+<p><img src="/assets/img/sql-explain-new.png" alt="explain"></p>
+<p>扫描行数已经变成了1，再执行一下最开始的sql，耗时只有25ms，成功解决问题。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p> 两张表关联的时候，如果关联条件字段的字符集不一致，将不能正常使用索引，导致关联的时候扫描全表，引起性能问题</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/mysql/" class="article-tag-list-link color1">mysql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/07/01/mysql/join-with-defferent-charset/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java/ipToLong" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1535,115 +1667,6 @@
 
 
   
-    <article id="post-java-args" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/05/java-args/">java-args</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/05/java-args/" class="archive-article-date">
-        <time datetime="2020-05-05T03:33:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="java程序调用"><a href="#java程序调用" class="headerlink" title="java程序调用"></a>java程序调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">用法:    </span><br><span class="line">   java [-options] class [args...]</span><br><span class="line">           (执行类)   </span><br><span class="line">   或  java [-options] -jar jarfile [args...]</span><br><span class="line">           (执行 jar 文件)   </span><br><span class="line"> 其中options包括:  </span><br><span class="line">    -d32     使用 32 位数据模型 (如果可用)   </span><br><span class="line">    -d64     使用 64 位数据模型 (如果可用)   </span><br><span class="line">    -server      选择 server VM      </span><br><span class="line">              默认 VM 是 server,      </span><br><span class="line">             因为您是在服务器类计算机上运行。</span><br><span class="line">   ...   </span><br><span class="line">    &quot;-D&lt;名称&gt;&#x3D;&lt;值&gt;  设置系统属性&quot;   </span><br><span class="line">   ...</span><br></pre></td></tr></table></figure>
-
-<p>这里重点关注jvm参数, 也就是-D这个, 其他选项就省略了.<br>-D开头的选项会被作为系统属性值,可以使用<br><code>System.getProperty(&quot;name&quot;)</code> 获取.  </p>
-<p>仔细观察可以发现: </p>
-<ol>
-<li><p>所有的 option都是以<code>-</code>开头.  </p>
-</li>
-<li><p>第一个没有短横线的参数,会被认为是<code>class</code></p>
-</li>
-<li><p><code>class</code> 后边的所有参数会被作为 <code>main</code> 函数的 <code>args[]</code></p>
-</li>
-<li><p>综上: 系统属性通过<code>-Dkey=value</code>来设置, 出现在<code>class</code>的前面,  而程序运行参数出现在class的后面, 解析方式和命令行参数一致, 以空格分割为<code>String[]</code> ,传给<code>main</code> 方法.</p>
-</li>
-<li><p>SpringBoot 的<code>args</code> 参数: <code>[args...]</code> 中以<code>--key=value</code> 形式存在的参数, 会被<code>SpringBoot</code>搜集处理, 放在<code>properites</code>中,在程序中可以直接使用<code>${&quot;key&quot;}</code> 的方式引用.</p>
-</li>
-</ol>
-<h4 id="jvm非标准选项-X"><a href="#jvm非标准选项-X" class="headerlink" title="jvm非标准选项 -X"></a>jvm非标准选项 -X</h4><p>以下是java 8 的非常标准选项：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">    -Xmixed           混合模式执行 (默认)</span><br><span class="line">    -Xint             仅解释模式执行</span><br><span class="line">    -Xbootclasspath:&lt;用 : 分隔的目录和 zip&#x2F;jar 文件&gt;</span><br><span class="line">                      设置搜索路径以引导类和资源</span><br><span class="line">    -Xbootclasspath&#x2F;a:&lt;用 : 分隔的目录和 zip&#x2F;jar 文件&gt;</span><br><span class="line">                      附加在引导类路径末尾</span><br><span class="line">    -Xbootclasspath&#x2F;p:&lt;用 : 分隔的目录和 zip&#x2F;jar 文件&gt;</span><br><span class="line">                      置于引导类路径之前</span><br><span class="line">    -Xdiag            显示附加诊断消息</span><br><span class="line">    -Xnoclassgc       禁用类垃圾收集</span><br><span class="line">    -Xincgc           启用增量垃圾收集</span><br><span class="line">    -Xloggc:&lt;file&gt;    将 GC 状态记录在文件中 (带时间戳)</span><br><span class="line">    -Xbatch           禁用后台编译</span><br><span class="line">    -Xms&lt;size&gt;        设置初始 Java 堆大小</span><br><span class="line">    -Xmx&lt;size&gt;        设置最大 Java 堆大小</span><br><span class="line">    -Xss&lt;size&gt;        设置 Java 线程堆栈大小</span><br><span class="line">    -Xprof            输出 cpu 配置文件数据</span><br><span class="line">    -Xfuture          启用最严格的检查, 预期将来的默认值</span><br><span class="line">    -Xrs              减少 Java&#x2F;VM 对操作系统信号的使用 (请参阅文档)</span><br><span class="line">    -Xcheck:jni       对 JNI 函数执行其他检查</span><br><span class="line">    -Xshare:off       不尝试使用共享类数据</span><br><span class="line">    -Xshare:auto      在可能的情况下使用共享类数据 (默认)</span><br><span class="line">    -Xshare:on        要求使用共享类数据, 否则将失败。</span><br><span class="line">    -XshowSettings    显示所有设置并继续</span><br><span class="line">    -XshowSettings:all</span><br><span class="line">                      显示所有设置并继续</span><br><span class="line">    -XshowSettings:vm 显示所有与 vm 相关的设置并继续</span><br><span class="line">    -XshowSettings:properties</span><br><span class="line">                      显示所有属性设置并继续</span><br><span class="line">    -XshowSettings:locale</span><br><span class="line">                      显示所有与区域设置相关的设置并继续</span><br><span class="line"></span><br><span class="line">-X 选项是非标准选项, 如有更改, 恕不另行通知。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">以下选项为 Mac OS X 特定的选项:</span><br><span class="line">    -XstartOnFirstThread</span><br><span class="line">                      在第一个 (AppKit) 线程上运行 main() 方法</span><br><span class="line">    -Xdock:name&#x3D;&lt;应用程序名称&gt;&quot;</span><br><span class="line">                      覆盖停靠栏中显示的默认应用程序名称</span><br><span class="line">    -Xdock:icon&#x3D;&lt;图标文件的路径&gt;</span><br><span class="line">                      覆盖停靠栏中显示的默认图标</span><br></pre></td></tr></table></figure>
-<p>其中比较常用的是 <code>-Xms</code> <code>-Xmx</code> 用来设置jvm堆内存大小。 </p>
-<h4 id="java高级运行时选项-Advanced-Runtime-Options"><a href="#java高级运行时选项-Advanced-Runtime-Options" class="headerlink" title="java高级运行时选项, Advanced Runtime Options"></a>java高级运行时选项, Advanced Runtime Options</h4><p>These options control the runtime behavior of the Java HotSpot VM.<br>用来控制jvm运行时的行为。<br>例如8以前的版本常用 <code>-XX:PermSize=256m</code> 来控制持久带的大小。<br>高级选项可以通过 <code>man java</code> 来查看java命令的详情文档， 里面有完整的描述。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/05/java-args/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1776,6 +1799,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
@@ -1789,10 +1816,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">kvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mac</a>
               </li>
             
             <div class="clearfix"></div>
