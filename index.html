@@ -872,9 +872,9 @@
 </li>
 <li><p>Jar包里，带有指定<code>profile</code>的<code>application proerties</code>文件（<code>application-{profile}.properties</code>）YAML也可以</p>
 </li>
-<li><p>Jar包外的<code>application.properties</code>文件（YAML也可以）</p>
+<li><p>Jar包外的<code>application.properties</code>文件（YAML也可以， 如果properites和yml文件同时存在，什么使用properties）</p>
 </li>
-<li><p>Jar包里的<code>application.properties</code>文件（YAML也可以）</p>
+<li><p>Jar包里的<code>application.properties</code>文件（YAML也可以， 如果properites和yml文件同时存在，什么使用properties）</p>
 </li>
 <li><p>配置类上的<code>@PropertySource</code>指定的配置。<strong>注意：</strong> 这样指定的配置，在Spring上下文件刷新之前是不会添加到<code>Environment</code>里的， 所以对于某些配置来说有就迟了，如<code>logging.*</code> and <code>spring.main.*</code>，它们是在刷新之前就要被读取</p>
 </li>
