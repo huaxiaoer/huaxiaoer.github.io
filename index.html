@@ -215,6 +215,537 @@
             
 
   
+    <article id="post-ruby/ruby-on-the-way" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/12/19/ruby/ruby-on-the-way/">踏上ruby征程吧</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/12/19/ruby/ruby-on-the-way/" class="archive-article-date">
+        <time datetime="2020-12-19T03:28:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-19</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>试着让 Ruby 更自然，而不是更简单</p>
+<h3 id="ruby-初见"><a href="#ruby-初见" class="headerlink" title="ruby 初见"></a>ruby 初见</h3><p>Ruby 是一个注重均衡的语言，<a href="http://www.rubyist.net/~matz/" target="_blank" rel="noopener">松本行弘（Yukihiro “Matz” Matsumoto）</a>发明，兼具函数式编程和命令式编程特色的语言。</p>
+<p>Ruby <a href="http://www.ruby-lang.org/en/about/license.txt" target="_blank" rel="noopener">完全免费</a>。</p>
+<p>Ruby 把一切视为对象。</p>
+<p>Ruby 很灵活性，Ruby 的核心部分可以更改，也可以重新定义。</p>
+<p>Ruby 代码块：表现力强大的特性。 代码块使用 <code>do ... end</code> 结构表述，Ruby 中有很多方法都留出了切入点，让程序员编写代码块，控制方法具体的操作细节。</p>
+<p>Ruby 中的混入。 Ruby“有意”只提供单继承，但是Ruby有模块，类可以混入模块，得到模块中的所有方法。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyArray</span></span></span><br><span class="line">  <span class="keyword">include</span> Enumerable</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Ruby 变量约定：在 Ruby 中，不需要提前声明变量。Ruby 使用简单的命名约定指明变量的作用域。</p>
+<ul>
+<li><code>var</code> 可能是局部变量</li>
+<li><code>@var</code> 是实例变量</li>
+<li><code>$var</code> 是全局变量</li>
+</ul>
+<p>Ruby 还有其他众多特性，下面列举一些：</p>
+<ul>
+<li>Ruby 的异常处理特性与 Java 和 Python 类似，易于处理错误。</li>
+<li>Ruby 拥有一个针对所有对象的标识-清扫（mark-and-sweep）式垃圾回收程序）。使用者无需维护扩展库中的引用计数。正如 Matz 所说：“这对您的健康有益。”</li>
+<li>为 Ruby 写 C 扩展比 Perl 和 Python 容易，因为 Ruby 有一个非常雅致的 API，能从 C 语言中调用 Ruby。例如，调用软件中内嵌的 Ruby，当做脚本语言使用。此外，还有 SWIG 接口可用。</li>
+<li>如果操作系统允许，Ruby 可以动态加载扩展库。</li>
+<li>Ruby 提供不依赖操作系统的线程。所以，不管操作系统是否支持，Ruby 支持的所有操作系统都可以使用多线程，甚至是 MS-DOS!</li>
+<li>Ruby 高度可移植：它主要在 GNU/Linux 上开发，但也支持很多类型的 UNIX，以及 macOS，Windows，DOS，BeOS，OS/2 等。</li>
+</ul>
+<p>Ruby 的其他实现</p>
+<p>作为一门语言，Ruby 有不同的实现。本页讨论的是推荐的实现，社区通常称之为 <strong>MRI</strong>（“Matz’s Ruby Interpreter”）或 <strong>CRuby</strong>（因为是用 C 语言写的）。不过，还有一些别的实现。其他实现通常在特定的场合中有用，集成了其他语言或环境，或者有 MRI 不具有的特性。</p>
+<p>下面列出一些其他实现：</p>
+<ul>
+<li><a href="http://jruby.org/" target="_blank" rel="noopener">JRuby</a> 是基于 JVM（Java Virtual Machine）的 Ruby 实现，利用了 JVM 中优秀的 JIT 编译器、垃圾回收程序、并发线程、工具生态系统和大量的库。</li>
+<li><a href="http://rubini.us/" target="_blank" rel="noopener">Rubinius</a> 是用“Ruby 编写的 Ruby”。构建于 LLVM 之上，Rubinius 跑在一个很灵活的虚拟机上，别的语言也可以构建于这个虚拟机上。</li>
+<li><a href="http://www.mruby.org/" target="_blank" rel="noopener">mruby</a> 是 Ruby 语言的轻量级实现，可以链接或嵌入到程序之中。mruby 由 Ruby 的创建者松本行弘（Matz）领导开发。</li>
+<li><a href="http://www.ironruby.net/" target="_blank" rel="noopener">IronRuby</a> 是一个“与 .NET 框架紧密集成”的实现。</li>
+<li><a href="http://maglev.github.io/" target="_blank" rel="noopener">MagLev</a> 是“一个快速、稳定的 Ruby 实现，支持集成对象持久化和分布式共享缓存”。</li>
+<li><a href="https://github.com/parrot/cardinal" target="_blank" rel="noopener">Cardinal</a> 是一个“为 <a href="http://parrot.org/" target="_blank" rel="noopener">Parrot</a> 虚拟机 （Perl 6）编写的 Ruby 编译器”。</li>
+</ul>
+<h4 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">functionName</span></span></span><br><span class="line">  /<span class="regexp">/todo</span></span><br><span class="line"><span class="regexp">end</span></span><br></pre></td></tr></table></figure>
+
+<p>函数以有默认参数值， 支持可变长参数 <code>*argName</code> ，函数只能返回一个值</p>
+<p>函数调用两方式：<code>func arg1 arg2...</code> <code>func(arg1, arg2)</code></p>
+<p>​    </p>
+<h4 id="字符串中替换变量"><a href="#字符串中替换变量" class="headerlink" title="字符串中替换变量"></a>字符串中替换变量</h4><p><code>#{变量名}</code> ， 这里面还可以调用变量的方法 <code>#{变量名.方法}</code>。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">irb(main):007:0&gt;</span> name = <span class="string">"zhao yuan"</span></span><br><span class="line">=&gt; <span class="string">"zhao yuan"</span></span><br><span class="line"><span class="meta">irb(main):008:0&gt;</span> puts <span class="string">"Hello <span class="subst">#&#123;name.capitalize&#125;</span>"</span></span><br><span class="line">Hello Zhao yuan</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeter</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(name = <span class="string">"World"</span>)</span></span></span><br><span class="line">    @name = name</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">say_hi</span></span></span><br><span class="line">    puts <span class="string">"Hi <span class="subst">#&#123;@name&#125;</span>!"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">say_bye</span></span></span><br><span class="line">    puts <span class="string">"Bye <span class="subst">#&#123;@name&#125;</span>, come back soon."</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p> 特别留意一下 <code>@name</code>，这是一个实例变量。类里面的任何函数都可以使用实例变量</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>注释以<code>#</code> 开头</p>
+<p>多行注释： <code>=begin</code> 和 <code>=end</code> 之间的区域</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">=begin</span></span><br><span class="line"><span class="comment">这是一个多行注释例子</span></span><br><span class="line"><span class="comment">我是多行注释</span></span><br><span class="line"><span class="comment">=end</span></span><br><span class="line">print <span class="string">"Welcome to Ruby Essentials!"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>ruby 变量不需要事先声明。</p>
+<h5 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h5><p>常量生命周期就是程序运行的时间。 以大写字母开头的变量， 就是常量， 不过通常约定常量的所有字母都用大写字母， 也可以在中间用下划线分隔。</p>
+<p>常量值可以改， 回收到解释器的 <em>warning</em>, 但不影响执行。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ruby</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/ruby/" class="article-tag-list-link color5">ruby</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/12/19/ruby/ruby-on-the-way/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring/spring-boot/SpringApplication" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/11/21/spring/spring-boot/SpringApplication/">SpringApplication</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/11/21/spring/spring-boot/SpringApplication/" class="archive-article-date">
+        <time datetime="2020-11-21T12:52:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-21</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><code>SpringApplication</code> 类以<code>main()</code> 方法作为入口， 提供了非常方便的方式来启动Spring应用程序。大多数情况下直接调用静态方法<code>SpringApplication.run</code>就可以搞定：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(MySpringConfiguration<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>应用启动时输出信息类似：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> &#x2F;\\ &#x2F; ___&#39;_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | &#39;_ | &#39;_| | &#39;_ \&#x2F; _&#96; | \ \ \ \</span><br><span class="line"> \\&#x2F;  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  &#39;  |____| .__|_| |_|_| |_\__, | &#x2F; &#x2F; &#x2F; &#x2F;</span><br><span class="line"> &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;|_|&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;|___&#x2F;&#x3D;&#x2F;_&#x2F;_&#x2F;_&#x2F;</span><br><span class="line"> :: Spring Boot ::   v2.4.0</span><br><span class="line"></span><br><span class="line">2019-04-31 13:09:54.117  INFO 56603 --- [           main] o.s.b.s.app.SampleApplication            : Starting SampleApplication v0.1.0 on mycomputer with PID 56603 (&#x2F;apps&#x2F;myapp.jar started by pwebb)</span><br><span class="line">2019-04-31 13:09:54.166  INFO 56603 --- [           main] ationConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6e5a8246: startup date [Wed Jul 31 00:08:16 PDT 2013]; root of context hierarchy</span><br><span class="line">2019-04-01 13:09:56.912  INFO 41370 --- [           main] .t.TomcatServletWebServerFactory : Server initialized with port: 8080</span><br><span class="line">2019-04-01 13:09:57.501  INFO 41370 --- [           main] o.s.b.s.app.SampleApplication            : Started SampleApplication in 2.992 seconds (JVM running for 3.658)</span><br></pre></td></tr></table></figure>
+
+<p>默认输出<code>INFO</code>级别日志，包括一些启动相关的细节、启动应用的用户等。    设置<code>spring.main.log-startup-info</code>为<code>false</code>可以关闭启动日志，包含当前生效的profile日志。</p>
+<p>如果想输出其它内容， 可以继承<code>SpringApplication</code>类重写<code>logStartupInfo(boolean)</code>方法。</p>
+<h4 id="启动失败"><a href="#启动失败" class="headerlink" title="启动失败"></a>启动失败</h4><p>如果应用启动失败，注册的<code>FailureAnalyzers</code> 会有机会执行并提供专用的错误信息和显示如何修复问题的操作描述。例如<code>8080</code>端口被占用导致启动失败的话， 会看到如下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">***************************</span><br><span class="line">APPLICATION FAILED TO START</span><br><span class="line">***************************</span><br><span class="line">Description:</span><br><span class="line">Embedded servlet container failed to start. Port 8080 was already in use.</span><br><span class="line"></span><br><span class="line">Action:</span><br><span class="line">Identify and stop the process that&#39;s listening on port 8080 or configure this application to listen on another port.</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong>spring 提供了几种<code>FailureAnalyzer</code>实现，也可以<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-failure-analyzer" target="_blank" rel="noopener">添加自定义实现</a>。</p>
+<h4 id="延迟初始化"><a href="#延迟初始化" class="headerlink" title="延迟初始化"></a>延迟初始化</h4><p><code>SpringApplication</code> 支持延迟初始化， 开启延迟初始化后，组件并不会在应用启动时就创建，要用到的时候才会创建。延迟初始化可以减少启动时间。在web应用里， 很多web相关的组件要有HTTP 请求进来的时候才会初始化， 这可能影响请求响应时间。</p>
+<p>延迟启动的弱点，是会延迟问题显露的时间。 一些错误配置的延迟初始化组件在启动时并不会暴露问题，直到它用到的时候问题的会暴露。而且还需要考虑JVM有足够的内存来容纳所有的组件， 不仅仅是启动时初始化的组件。基于这些原因，延迟初始化默认是关闭的。开启延迟初始化前，一定先优化好内存配置。</p>
+<p>延迟初始化可用编程方式开启， 可以调用<code>SpringApplicationBuilder</code>的<code>lazyInitialization</code>方法，或者<code>SpringApplication</code>的<code>setLazyInitialization</code>方法。 另外还可能通过<code>spring.main.lazy-initialization</code>属性开启。</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.main.lazy-initialization</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">main:</span></span><br><span class="line">    <span class="attr">lazy-initialization:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义Banner"><a href="#自定义Banner" class="headerlink" title="自定义Banner"></a>自定义Banner</h4><p>应用启动时打印的Banner是可以修改的：</p>
+<ul>
+<li>classpath 下添加一个<code>banner.txt</code> 文件</li>
+<li>设置<code>spring.banner.location</code> 属性指向banner文件</li>
+</ul>
+<p>如果banner文件的编码不是<code>UTF8</code>，那么可以设置<code>spring.banner.charset</code>属性来指定些文件的编码。</p>
+<p>banner文件除了文件文件，还可以在classpath下放<code>banner.gif</code>, <code>banner.jpg</code>,  <code>banner.png</code> 图片文件，也可能用<code>spring.banner.image.location</code> 属性指定图片位置。</p>
+<p><code>banner.txt</code> 里可以使用占位符，可用的占位符如下：</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>${application.version}</code></td>
+<td align="left">应用版本编号，定义在 <code>MANIFEST.MF</code>文件里.  例如 <code>Implementation-Version: 1.0</code>打印为<code>1.0</code>.</td>
+</tr>
+<tr>
+<td><code>${application.formatted-version}</code></td>
+<td align="left">格式化输出的版本号，如：(v1.0)</td>
+</tr>
+<tr>
+<td><code>${spring-boot.version}</code></td>
+<td align="left">使用的spring boot 版本，如：2.4.0</td>
+</tr>
+<tr>
+<td><code>${spring-boot.formatted-version}</code></td>
+<td align="left">格式化输出的使用的spring boot 版本，如：(v2.4.0)</td>
+</tr>
+<tr>
+<td><code>${Ansi.NAME}</code> (or <code>${AnsiColor.NAME}</code>, <code>${AnsiBackground.NAME}</code>, <code>${AnsiStyle.NAME}</code>)</td>
+<td align="left"><code>NAME</code>是ANSI 转义字符的名称，详情参考： <a href="https://github.com/spring-projects/spring-boot/tree/v2.4.0/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/ansi/AnsiPropertySource.java" target="_blank" rel="noopener"><code>AnsiPropertySource</code></a></td>
+</tr>
+<tr>
+<td><code>${application.title}</code></td>
+<td align="left">应用名称，定义在<code>MANIFEST.MF</code>文件里，例如：<code>Implementation-Title: MyApp</code> ，展示为：<code>MyApp</code></td>
+</tr>
+</tbody></table>
+<p><strong>提示：</strong> <code>MANIFEST.MF</code> 文件不需要自己写， 这是打包时spring boot maven插件生成的。假如是maven项目的话，里面的版本和title，是自于pom文件的。开发时展示不出来。这个文件是用户来java标准里用来描述jar包的。</p>
+<h4 id="定制SpringApplication"><a href="#定制SpringApplication" class="headerlink" title="定制SpringApplication"></a>定制SpringApplication</h4><p>如果默认的<code>SpringApplication</code> 不满足你的味口，那么可以创建一个局部实例，然后定制它。 例如关闭banner：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication app = <span class="keyword">new</span> SpringApplication(MySpringConfiguration<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    app.setBannerMode(Banner.Mode.OFF);</span><br><span class="line">    app.run(args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> <strong>提示：</strong> <code>SpringApplication</code>的构造函数参数是Spring Beans的配置源，大多数时候是有@Configuration注解的类，当然也可以是XML配置文件的引用， 或者需要扫描的包路径</p>
+</blockquote>
+<p>还可以用<code>application.properties</code> 配置<code>SpringApplication</code>，详情见<em><a href="https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/reference/html/spring-boot-features.html#boot-features-external-config" target="_blank" rel="noopener">Externalized Configuration</a></em> </p>
+<h4 id="SpringApplication-流式构建api"><a href="#SpringApplication-流式构建api" class="headerlink" title="SpringApplication 流式构建api"></a><code>SpringApplication</code> 流式构建api</h4><p>如果想创建一个有层次结构的<code>ApplicationContext</code>（有父子关系的多上下文），或者更愿意使用流式构建api，那么可以使用<code>SpringApplicationBuilder</code>。</p>
+<p><code>SpringApplicationBuilder</code>让你能够链式的操作多个方法，其中<code>parent</code>和<code>child</code>让你能够构建上下文的层次结构，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> SpringApplicationBuilder()</span><br><span class="line">        .sources(Parent<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">        .<span class="title">child</span>(<span class="title">Application</span>.<span class="title">class</span>)</span></span><br><span class="line"><span class="class">        .<span class="title">bannerMode</span>(<span class="title">Banner</span>.<span class="title">Mode</span>.<span class="title">OFF</span>)</span></span><br><span class="line"><span class="class">        .<span class="title">run</span>(<span class="title">args</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示：</strong> 创建上下文层次结构有一些限制，例如Web组件必须包含在子上下文里，而且父子上下文使用的是相同的<code>Environment</code>，更多细节参考<a href="https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/api/org/springframework/boot/builder/SpringApplicationBuilder.html" target="_blank" rel="noopener"><code>SpringApplicationBuilder</code> Javadoc</a></p>
+</blockquote>
+<h4 id="应用可用性"><a href="#应用可用性" class="headerlink" title="应用可用性"></a>应用可用性</h4><p>在平台上部署后，应用程序可以使用诸如<a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/" target="_blank" rel="noopener">Kubernetes Probes</a>之类的底层技术向平台提供可用性相关的信息。Spring Boot对常用的“存活性”和“就绪性”可用性状态提供了开箱即用的支持。如果使用Spring boot <code>actuator</code> 模块支持，那么这个些状态将显示为运行状态端点组（google翻译，不知道什么意思。。。） </p>
+<p>另外，你还可以通过注入<code>ApplicationAvailability</code>接口到自己的bean里，来实现其可用性监控。</p>
+<h5 id="Liveness-State"><a href="#Liveness-State" class="headerlink" title="Liveness State"></a>Liveness State</h5>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring-boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring/" class="article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring/spring-boot/" class="article-tag-list-link color2">spring-boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/11/21/spring/spring-boot/SpringApplication/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring/spring-boot/configuration" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/11/07/spring/spring-boot/configuration/">开始使用spring boot</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/11/07/spring/spring-boot/configuration/" class="archive-article-date">
+        <time datetime="2020-11-07T02:40:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-07</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>spring 项目需要根据 <strong>配置</strong> 来构建 ApplicationContext，并初始化项目中需要使用的组件，以及从什么地方去扫描组件。 所以 <strong>配置</strong> 对于spring项目来说有至关重要， 是spring的灵魂。</p>
+<p>spring boot 提供了两种方式来定义配置：</p>
+<ol>
+<li>在java代码中配置：<code>@Configuration</code>  （推荐此种方式）</li>
+<li>基于XML文件配置： spring 一直以来的配置方式， 不做多于说明。 好也XML，坏也XML。</li>
+</ol>
+<p>以下细说代码风格的配置</p>
+<h3 id="配置类-Configuration"><a href="#配置类-Configuration" class="headerlink" title="配置类 @Configuration"></a>配置类 @Configuration</h3><p>配置是spring的核心， 有<code>@Configuration</code> 注解的类， 会被spring认为是 spring 运行环境的 <strong>配置类</strong>， 至于配置类有多重要，看下面这段代码就知道了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Example<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是项目的运行入口， <code>SpringApplication</code> 运行参数，第一个参数 就是<strong>配置类</strong>。 可以说有配置类，才有<code>SpringApplication</code>。它的作用就是告诉spring容器， 有哪些bean需要容器来管理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Example<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MyRedis <span class="title">myRedis</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyRedis();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例子中， <code>Example</code> 类作为配置类传给SpringApplication来启动spring 容器。 spring容器会执行<code>Example</code>类在有<code>@Bean</code>注解的方法，并把返回值作为一个组件管理起来。<code>@Bean</code>注解没有设置 <code>name</code> 属性的话， 组件的名字默认就是方法名。 此例中，容器启动后会创建一个名为<code>myRedis</code> 的组件，需要使用<code>myRedis</code>组件的地文, 用<code>@AotoWired</code>或<code>@Resource</code>注入就可以了。</p>
+<h4 id="导入其它配置类"><a href="#导入其它配置类" class="headerlink" title="导入其它配置类"></a>导入其它配置类</h4><p>对大型项目来说组件会非常多， 全都写在一个类里会很不雅。 这种问题用<code>@Import</code>分分钟解决。 比如在上面的例子中，我们要加入数据库组件， 这时不想把所有组件都定义在一个类里， 那可以新建一个配置类，来创建数据组件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DbConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"mysql"</span>)</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MyDb <span class="title">myDb</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyDb();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：<code>DbConfig</code> 类都不需要加<code>@Configuration</code>注解。</p>
+<p>然后在主配置类中，通过<code>@Import</code>注解导入<code>DbConfig</code> 就可以了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Import</span>(&#123;DbConfig<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Example<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MyRedis <span class="title">myRedis</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyRedis();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="导入XML配置文件"><a href="#导入XML配置文件" class="headerlink" title="导入XML配置文件"></a>导入XML配置文件</h4><p>配置类也可以用<code>@ImportResource</code> 注解导入xml配置文件，就不举例了。</p>
+<h3 id="自动配置"><a href="#自动配置" class="headerlink" title="自动配置"></a>自动配置</h3><p>spring 自动配置功能会根据项目依赖的jar包，自动创建一些组件。 比如classpath里有<code>HSQLDB</code> ，而且我们又没有手动配置数据库链接组件的时候， spring就会自动配置一个嵌入式的db。 如果依赖了<code>spring-boot-starter-web</code> ，这个时候必须要启用自动配置，不然spring无法正常配置<code>ServletWebServerApplicationContext</code>。</p>
+<p>要启用自动配置， 只需要在任意一个有<code>@Configuration</code> 类上加<code>@EnableAutoConfiguration</code> 或<code>@SpringBootApplication</code> 就可以了。</p>
+<h4 id="替换自动配置"><a href="#替换自动配置" class="headerlink" title="替换自动配置"></a>替换自动配置</h4><p>自动配置是非侵入式的， 当我们手动配置了某个bean的时候，对应的自动配置就不会生效。在启动项目时加<code>--debug</code> 命令行参数可以察看当前使用了哪些自动配置组件。    </p>
+<h4 id="禁用特定的自动配置类"><a href="#禁用特定的自动配置类" class="headerlink" title="禁用特定的自动配置类"></a>禁用特定的自动配置类</h4><p><code>@SpringBootApplication</code> 和 <code>@EnableAutoConfiguration</code> 都支持<code>exclude</code> 用户排除特定的自动配置类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.jdbc.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span>(exclude=&#123;DataSourceAutoConfiguration<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">MyApplication</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如查要排除的类 不在classpath中， 那可以作用<code>excludeName</code> 属性，属性值为要排除的类的全限定名。</p>
+<p>还可以通过 设置<code>spring.autoconfigure.exclude</code> 属性来排除。</p>
+<h3 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h3><p>spring对代码结构没有明确要求， 但是有一些最佳实践可以借鉴</p>
+<h4 id="不要使用默认包"><a href="#不要使用默认包" class="headerlink" title="不要使用默认包"></a>不要使用默认包</h4><p>默认包，就是没有包名。当 <code>@ComponentScan</code>, <code>@ConfigurationPropertiesScan</code>, <code>@EntityScan</code>,  <code>@SpringBootApplication</code> 注解使用在默认包的类上时， 会导致扫描所有依赖jar包里的所有类，这会导致扫描变慢， 而且可能会加载到一些并不想要的bean导致代码运行异常。</p>
+<p>推荐严格遵循 <strong>java包命名规范</strong> , 即按域名反转的形式来命名包。</p>
+<h4 id="应用主类的位置"><a href="#应用主类的位置" class="headerlink" title="应用主类的位置"></a>应用主类的位置</h4><p>推荐<strong>把主类放在项目根包里</strong>，位于所有其它类的上层。<code>@SpringBootApplication</code> 注解通常加在主类上， 这样就隐含扫包的基础包是当前项目的根包。 比如项目的根包名是 <code>com.xxx.ademon</code>， 那主要就直接丢在<code>com.xxx.ademon</code>下， 那隐含的扫包就是<code>com.xxx.ademon</code>。</p>
+<p>如果不想用<code>@SpringBootApplication</code> 那用 <code>@EnableAutoConfiguration</code> 和 <code>@ComponentScan</code>也可以</p>
+<h3 id="bean-和依赖注入"><a href="#bean-和依赖注入" class="headerlink" title="bean 和依赖注入"></a>bean 和依赖注入</h3><p>标准spring框架的技术依然可以用来定义bean和注入依赖。</p>
+<p>如果代码结构是按前面推荐的一致，那 <code>@ComponentScan</code> 可以不需要任务参数，项目里所有组件（    <code>@Component</code>, <code>@Service</code>, <code>@Repository</code>, <code>@Controller</code> 等）都会自动注册为spring bean。</p>
+<p>以下示例中一个<code>@Service</code>通过构造函数注入一个<code>RiskAssessor</code> bean：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DatabaseAccountService</span> <span class="keyword">implements</span> <span class="title">AccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> RiskAssessor riskAssessor;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DatabaseAccountService</span><span class="params">(RiskAssessor riskAssessor)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.riskAssessor = riskAssessor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果只有一个构造函数， 还可以省略<code>@Autowired</code>注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DatabaseAccountService</span> <span class="keyword">implements</span> <span class="title">AccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> RiskAssessor riskAssessor;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DatabaseAccountService</span><span class="params">(RiskAssessor riskAssessor)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.riskAssessor = riskAssessor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用-SpringBootApplication-注解"><a href="#使用-SpringBootApplication-注解" class="headerlink" title="使用 @SpringBootApplication 注解"></a>使用 @SpringBootApplication 注解</h3><p>使用<code>@SpringBootApplication</code> 让你立马拥有<em>自动配置<em>、</em>组件扫描<em>、</em>定义额外配置项</em> 的超能力。它相当于同时拥有以下三个功能：</p>
+<ul>
+<li><code>@EnableAutoConfiguration</code>： 启用spring 自动配置机制</li>
+<li><code>@ComponentScan</code>： 启用组件扫描</li>
+<li><code>@Configuration</code>： 允许注册额外的bean，导入其它配置类。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.myapplication;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span> <span class="comment">// 等同于： @Configuration @EnableAutoConfiguration @ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行应用"><a href="#运行应用" class="headerlink" title="运行应用"></a>运行应用</h3><h4 id="IDE里运行"><a href="#IDE里运行" class="headerlink" title="IDE里运行"></a>IDE里运行</h4><p>跟普通java程序一样， 直接运行主类main方法。</p>
+<h4 id="作为jar包运行"><a href="#作为jar包运行" class="headerlink" title="作为jar包运行"></a>作为jar包运行</h4><p>和普通jar包运行一样:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar target/myapplication-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<p>如果运行jar包的时候， 还想开启debug端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,<span class="built_in">suspend</span>=n -jar target/myapplication-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过maven-插件运行"><a href="#通过maven-插件运行" class="headerlink" title="通过maven 插件运行"></a>通过maven 插件运行</h4><p>进入到项目根目录执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn spring-boot:run</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过gradle插件运行"><a href="#通过gradle插件运行" class="headerlink" title="通过gradle插件运行"></a>通过gradle插件运行</h4><p>进入到项目根目录执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gradle bootRun</span><br></pre></td></tr></table></figure>
+
+<h4 id="热部署"><a href="#热部署" class="headerlink" title="热部署"></a>热部署</h4><p>//todo</p>
+<h3 id="Developer-Tools"><a href="#Developer-Tools" class="headerlink" title="Developer Tools"></a>Developer Tools</h3><p>spring boot 提供一系列工具，来提升开始过程的体验。 引入<code>spring-boot-devtools</code> 模块就可以享受这些工具带来的快乐了。</p>
+<p>maven:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>grandle:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    developmentOnly(<span class="string">"org.springframework.boot:spring-boot-devtools"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当应用以<code>fully packaged</code>方式运行的时候，Developer Tools会自动禁用。当应用通过<code>java -jar</code> 或以特殊的<code>class loader</code> 启动时， spring会认为是在生产环境， 就会禁用Developer Tools， 可以通过设置<code>spring.devtools.restart.enabled</code> 系统属性来控制些行为。</p>
+<p>设置<code>-Dspring.devtools.restart.enabled=true</code>，那么不管应用是以什么class loader来启动的， 都会强制启用 Developer Tools。<strong>注意：</strong>生产环境千万别把这个属性设为true， 因为会带来安全风险。</p>
+<p>要禁用 Developer Tools， 只需要排除spring-boot-devtools依赖包， 或者设置<code>-Dspring.devtools.restart.enabled=false</code>。</p>
+<p>引用依赖的时候maven里<code>optional</code>设置为<code>true</code>， Grandle里标记为<code>developmentOnly</code>。</p>
+<h4 id="property-默认值"><a href="#property-默认值" class="headerlink" title="property 默认值"></a>property 默认值</h4><p>spring 支持的有些包会使用 cache 来提升性能， cache 在生产环境很有用处， 但是在开发时容易适得其反，导致开发者不能及时看到修改的内容， 出于这个原因，spring-boot-devtools 默认会禁用 cache 选项。</p>
+<p>Cache 选项通常通过<code>application.properties</code> 文件来配置，例如 Thymeleaf 提供了<code>spring.thymeleaf.cache</code>属性，比起手动设置这些属性，  spring-boot-devtools 会在开发时自动设置合理的值。</p>
+<p>由于开始<code>Spring mvc</code>和<code>spring WebFlux</code>程序时，开发者希望看到更多关于<code>web request</code> 的信息，spring-boot-devtools 允计为<code>web</code>日志组使用<code>DEBUG</code>日志，它会展示请求、处理请求的handler、响应等信息。 如果你还希望日志打印所有关于web请求的信息（包括可能潜在的敏感信息）可以打开<code>spring.mvc.log-request-details</code> or <code>spring.codec.log-request-details</code> 配置属性。</p>
+<p><strong>提示：</strong> 如果不想使用<code>property 默认值</code>功能，可以在<code>application.properties</code> 把<code>spring.devtools.add-properties</code> 设置为<code>false</code>。</p>
+<p><strong>提示：</strong> devtools 涉及的全部 properties 可以查看<code>DevToolsPropertyDefaultsPostProcessor</code>类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">properties.put(<span class="string">"spring.thymeleaf.cache"</span>, <span class="string">"false"</span>);</span><br><span class="line">properties.put(<span class="string">"spring.freemarker.cache"</span>, <span class="string">"false"</span>);</span><br><span class="line">properties.put(<span class="string">"spring.groovy.template.cache"</span>, <span class="string">"false"</span>);</span><br><span class="line">properties.put(<span class="string">"spring.mustache.cache"</span>, <span class="string">"false"</span>);</span><br><span class="line">properties.put(<span class="string">"server.servlet.session.persistent"</span>, <span class="string">"true"</span>);</span><br><span class="line">properties.put(<span class="string">"spring.h2.console.enabled"</span>, <span class="string">"true"</span>);</span><br><span class="line">properties.put(<span class="string">"spring.resources.cache.period"</span>, <span class="string">"0"</span>);</span><br><span class="line">properties.put(<span class="string">"spring.resources.chain.cache"</span>, <span class="string">"false"</span>);</span><br><span class="line">properties.put(<span class="string">"spring.template.provider.cache"</span>, <span class="string">"false"</span>);</span><br><span class="line">properties.put(<span class="string">"spring.mvc.log-resolved-exception"</span>, <span class="string">"true"</span>);</span><br><span class="line">properties.put(<span class="string">"server.error.include-stacktrace"</span>, <span class="string">"ALWAYS"</span>);</span><br><span class="line">properties.put(<span class="string">"server.servlet.jsp.init-parameters.development"</span>, <span class="string">"true"</span>);</span><br><span class="line">properties.put(<span class="string">"spring.reactor.debug"</span>, <span class="string">"true"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="自动重启"><a href="#自动重启" class="headerlink" title="自动重启"></a>自动重启</h4><p>使用 spring-boot-devtools 的应用，当 classpath 下的文件有变动时，会自动重启。当然某些资源比如静态资源、视图模板的变更不会触发自动重启。</p>
+<p><strong>触发重启：</strong> 由于spring-boot-devtools 监视classpath，所以触发重启的唯一方式就是更新classpath 里的内容。更新classpaht内容的方式取决于使用的IDE。Eclipse里保存修改过的文件就是引起classpath更新从而触发重启； IntelliJ IDEA 里构建项目（Build +→+ Build Project）有同样的效果。</p>
+<p>// todo</p>
+<h3 id="打生产环境包"><a href="#打生产环境包" class="headerlink" title="打生产环境包"></a>打生产环境包</h3><p>生产环境推荐打包为“可执行jar包”，所有的内容都在jar包内，基于云的部署也很方便。</p>
+<p>更多生产环境特性比如：健康、运行指标、JMX ， 可以考虑添加 <code>spring-boot-actuator</code>。更多内容参考<em><a href="https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready" target="_blank" rel="noopener">production-ready-features.html</a></em> </p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring-boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring/" class="article-tag-list-link color2">spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/spring/spring-boot/" class="article-tag-list-link color2">spring-boot</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/11/07/spring/spring-boot/configuration/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql/join-with-defferent-charset" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -789,7 +1320,7 @@
 
 
   
-    <article id="post-spring/spring-boot/configuration" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-spring/spring-boot/configuration-file" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -797,7 +1328,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2020/05/27/spring/spring-boot/configuration/">spring boot 配置文件</a>
+	  <a class="article-title" href="/2020/05/27/spring/spring-boot/configuration-file/">spring boot 配置文件</a>
 	
     </h1>
   
@@ -805,7 +1336,7 @@
 
   
   
-<a href="/2020/05/27/spring/spring-boot/configuration/" class="archive-article-date">
+<a href="/2020/05/27/spring/spring-boot/configuration-file/" class="archive-article-date">
         <time datetime="2020-05-27T09:44:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
 </a>
 
@@ -979,7 +1510,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/27/spring/spring-boot/configuration/">展开全文 >></a>
+      <a class="article-more-a" href="/2020/05/27/spring/spring-boot/configuration-file/">展开全文 >></a>
     </p>
     
 
@@ -1307,366 +1838,6 @@
 
 
   
-    <article id="post-cassandra/operation/add-node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/25/cassandra/operation/add-node/">cassandra集群添加节点</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/25/cassandra/operation/add-node/" class="archive-article-date">
-        <time datetime="2020-05-25T01:54:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <ol>
-<li><p>配置<code>cassandra.ymal</code></p>
-<p>设置<code>cluster_name</code>、<code>seed_provider</code>跟需要加入的集群相同</p>
-</li>
-<li><p>启动cassandra</p>
-<p><strong>注意：</strong> 如果节点是原来就存在数据的节点（例如：用<code>decommission</code>，<code>removenode</code> 从集群移除的节点）， 则需要删除原来的所以数据和commitLog，再启动</p>
-</li>
-</ol>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">cassandra</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/cassandra/" class="article-tag-list-link color5">cassandra</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/cassandra/operation/" class="article-tag-list-link color5">operation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/25/cassandra/operation/add-node/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-cassandra-remove-node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/22/cassandra-remove-node/">cassandra 移除节点</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/22/cassandra-remove-node/" class="archive-article-date">
-        <time datetime="2020-05-22T02:54:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>本文介绍从cassandara 集群删除节点步骤</p>
-<h4 id="查看节点状态"><a href="#查看节点状态" class="headerlink" title="查看节点状态"></a>查看节点状态</h4><p>移除节点前， 首先需要查看节点状态</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodetool status</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="根据节点状态移除节点"><a href="#根据节点状态移除节点" class="headerlink" title="根据节点状态移除节点"></a>根据节点状态移除节点</h4><ul>
-<li><p>如果节点<strong>在线</strong> ， 则使用<code>nodetool decommission</code> 命令使节点退役, <code>decommission</code> 过程中可以使用<code>nodetool &lt;options&gt; netstats -H</code> 查看进度。 <code>decommission</code> 会重新分配vnode， 并把本节点的数据发送到其它节点。</p>
-<p> <strong>注意：</strong> <code>decommission</code>  不会关闭节点， 所以需要在<code>decommission</code> 完成后手动关闭</p>
-</li>
-<li><p>如果节点已经<strong>离线</strong>， 则使用<code>nodetool removenode {hostId}</code> 直接删除节点。 <code>removenode</code>操作也会重新分配vnode，数据是从其它节点复制</p>
-<p>如果<code>removenode</code> 操作失败，需要使用<code>nodetool [options] assassinate &lt;ip_address&gt;</code> 强制杀死节点</p>
-</li>
-</ul>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">cassandra</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/cassandra/" class="article-tag-list-link color5">cassandra</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/cassandra/operation/" class="article-tag-list-link color5">operation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/22/cassandra-remove-node/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-mysql-utf8mb4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/06/mysql-utf8mb4/">java中使用mysql utf8mb4 字符集</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/06/mysql-utf8mb4/" class="archive-article-date">
-        <time datetime="2020-05-06T03:21:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="emoji表情的存储问题"><a href="#emoji表情的存储问题" class="headerlink" title="emoji表情的存储问题"></a>emoji表情的存储问题</h3><p>随着emoji表情使用越来越广泛，在mysql数据库在存储emoji表情的需求就越来越常见。 </p>
-<p>mysql <code>utf8</code> 字符集只能存储三个字节，实际上并不是真正的UTF-8，不能存储emoji表情。</p>
-<p>所以如果mysql数据库和表的字符集都使用的utf8，在存emoji表情的时候就会出错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.sql.SQLException: Incorrect string value: &#39;\xF0\x9F\x8D\x93\xE4\xBA...&#39; for column &#39;title&#39; at row 1</span><br><span class="line">	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3933)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3869)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2524)</span><br><span class="line">	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2675)</span><br><span class="line">	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2465)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1912)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2133)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2067)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5175)</span><br><span class="line">	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2052)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>为了支持emoji，mysql推出了<code>utf8mb4</code>字符集 , 那么如何在现有字符集为utf8的数据库上使用utf8mb4呢？</p>
-<p>首先，当然是把需要存emoji的数据库、表、字段的字符集都修改成为<code>utf8mb4</code>， 由于<code>utf8mb4</code>是兼容<code>utf8</code>的，所以修改并不会影响数据。</p>
-<p>然后，然后设置客户端字符集</p>
-<p>Java中一般使用<code>Connector/J</code> 来连接<code>mysql</code> ，看一下官网原文描述:</p>
-<blockquote>
-<p> For Connector/J 5.1.46 and earlier: In order to use the utf8mb4 character set for the connection, the server MUST be configured with character_set_server=utf8mb4; if that is not the case, when UTF-8 is used for characterEncoding in the connection string, it will map to the MySQL character set name utf8, which is an alias for utf8mb3.</p>
-<p>For Connector/J 5.1.47 and later:</p>
-<p>When UTF-8 is used for characterEncoding in the connection string, it maps to the MySQL character set name utf8mb4.</p>
-<p>If the connection option connectionCollation is also set alongside characterEncoding and is incompatible with it, characterEncoding will be overridden with the encoding corresponding to connectionCollation.</p>
-<p>Because there is no Java-style character set name for utfmb3 that you can use with the connection option charaterEncoding, the only way to use utf8mb3 as your connection character set is to use a utf8mb3 collation (for example, utf8_general_ci) for the connection option connectionCollation, which forces a utf8mb3 character set to be used, as explained in the last bullet.    </p>
-</blockquote>
-<p>可以看出：</p>
-<ul>
-<li>如果使用的是<code>Connector/J 5.1.46</code> 以及之前的版本，必须修改server 端的字符集：<code>character_set_server=utf8mb4</code>，这需要重启mysql服务，对于这使用云rds的同学来说更加困难</li>
-<li>更好的办法是升级 <code>Connector/J</code> 到 <code>5.1.47</code> 之后的版本，这样当我们连接参数指定为<code>characterEncoding=UTF-8</code> 的时候， <code>character_set_client</code> 和 <code>character_set_connection</code> 就会使用<code>utf8mb4</code>了。 当然还需要添加<code>characterSetResults=UTF-8</code>参数， 将<code>character_set_results</code>也设置为<code>utf8mb4</code> 。</li>
-</ul>
-<p>通过<code>Connector/J</code>客户端设置<code>utf8mb4</code>字符集的 java 示例代码如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDevWithJDBC</span><span class="params">()</span> <span class="keyword">throws</span> SQLException, ClassNotFoundException </span>&#123;</span><br><span class="line">        Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">        Connection connection = DriverManager.getConnection(<span class="string">"jdbc:mysql://localhost:3306/jingdong_db?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"</span></span><br><span class="line">                + <span class="string">"&amp;user=***&amp;password=***"</span>);</span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line">        viewSessionCharacterSet(statement);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">viewSessionCharacterSet</span><span class="params">(Statement statement)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        ResultSet resultSet = statement.executeQuery(<span class="string">"show variables like '%character%';"</span>);</span><br><span class="line">        <span class="keyword">while</span> (resultSet.next())&#123;</span><br><span class="line">            System.out.println(resultSet.getString(<span class="number">1</span>) + <span class="string">":"</span> +resultSet.getString(<span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="关于乱码问题"><a href="#关于乱码问题" class="headerlink" title="关于乱码问题"></a>关于乱码问题</h3><p>查看字符集<br>首先我们得登录数据库实例，查看当前数据库的字符集设置。</p>
-<p>使用如下命令：<br><code>show variables like &#39;%character%&#39;</code><br>可以看到字符集的具体情况如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">variable_name  value</span><br><span class="line">character_set_client   utf8</span><br><span class="line">character_set_connection   utf8</span><br><span class="line">character_set_database utf8</span><br><span class="line">character_set_filesystem   binary</span><br><span class="line">character_set_results  utf8</span><br><span class="line">character_set_server   utf8</span><br><span class="line">character_set_system   utf8</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="字符集参数说明"><a href="#字符集参数说明" class="headerlink" title="字符集参数说明"></a>字符集参数说明</h4><ul>
-<li>character_set_client： 此参数是客户端可以设置的，具体设置方式见下文详解。</li>
-<li>character_set_connection： 此参数是客户端可以设置的，具体设置方式见下文详解。</li>
-<li>character_set_database： 此参数值与你创建库的时候指定的字符集有关，关于创建库的时候如何指定字符集，可以参考创建库</li>
-<li>character_set_results：此参数是客户端可以设置的，具体设置方式见下文详解。</li>
-<li>character_set_server： 此参数是服务端的设置，此参数值可以通过参数组进行修改，可以参考 修改参数；   <strong>注意：</strong>此参数修改完后，记得重启实例才能确保 <code>character_set_database</code> 默认值与 <code>character_set_server</code> 保持同步。</li>
-<li>character_set_system： 此参数可以<strong>不用关心</strong></li>
-<li>character_set_filesystem： 此参数可以<strong>不用关心</strong></li>
-</ul>
-<h4 id="如何避免乱码"><a href="#如何避免乱码" class="headerlink" title="如何避免乱码"></a>如何避免乱码</h4><p>要避免在使用数据库过程中的乱码问题，需要确保<code>character_set_client</code>、<code>character_set_connection</code> 、<code>character_set_results</code>、<code>character_set_database</code>这四个参数值是保持一致的，如果不一致就会有可能出现乱码。</p>
-<h4 id="Java设置客户端设置字符集"><a href="#Java设置客户端设置字符集" class="headerlink" title="Java设置客户端设置字符集"></a>Java设置客户端设置字符集</h4><ul>
-<li><code>character_set_client</code>、<code>character_set_connection</code>  通过<code>characterEncoding</code> 参数设置</li>
-<li><code>character_set_results</code> 通过<code>characterSetResults</code> 参数设置</li>
-</ul>
-<p>示例： <code>jdbc:mysql://localhost:3306/mydb?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8</code></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/06/mysql-utf8mb4/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1681,7 +1852,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 <a href="https://huaxiaoer.github.io/" target="_blank">Kindrage</a>
+    		&copy; 2020-2021 <a href="https://huaxiaoer.github.io/" target="_blank">Kindrage</a>
     	</div>
       	<div class="footer-right">
 			
@@ -1816,6 +1987,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">kvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring-boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ruby</a>
               </li>
             
             <div class="clearfix"></div>
